@@ -33,3 +33,99 @@
         display: none;
     }
 }
+
+/* 
+ * The CSS below for displaying the menu is adapted from: 
+ * https://codepen.io/myackley35/pen/MwmYxP
+ */
+*, *:after, *:before {
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.menu-container {
+    width: 100%;
+    margin: 1em auto;
+    border: 1px solid #ddd;
+    padding: .3em .6em;
+}
+
+.menu-container p {
+    font-size: .9em;
+    color: #777;
+    margin-bottom: 1.5em;
+    font-style: italic;
+}
+
+.menu-container:before {
+    display: table;
+    content: " ";
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+.menu-container:after {
+    display: table;
+    content: " ";
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+.menu-group-header span {
+        float: left;
+        width: 50%;
+        text-align: center;
+        display: block;
+}
+
+h4.menu {
+    position: relative;
+    font-weight: 700;
+    margin: .7em 0 1em 0;
+}
+
+h4.menu span {
+        float: left;
+        width: 10%;
+        text-align: center;
+        display: block;
+}
+
+h4.menu span:first-child {
+        width: 40%;
+        text-align: left;
+}
+
+h4.menu span.dots {
+        width: 40%;
+        border-bottom: 2px dotted #ccc;
+        margin-top: .8em;
+}
+
+.h4.menu:before {
+    display: table;
+    content: " ";
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+h4.menu:after {
+    display: table;
+    content: " ";
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+.menu-section {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-discount {
+    color:green;
+}

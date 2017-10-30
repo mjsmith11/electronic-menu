@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using electronic_menu.Data;
+using System.IO;
+using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace electronic_menu
 {
@@ -21,6 +25,7 @@ namespace electronic_menu
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MenuContext>(options => options.UseMySql(GetMySQLConnectionString()));
             services.AddMvc();
         }
 
@@ -45,6 +50,17 @@ namespace electronic_menu
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private string GetMySQLConnectionString()
+        {
+            DbConfig config;
+            using (StreamReader r = new StreamReader("Data/dbconfig.json"))
+            {
+                string json = r.ReadToEnd();
+                config = JsonConvert.DeserializeObject<DbConfig>(json);
+            }
+            return "Server=" + config.server + ";database=" + config.database + ";uid=" + config.uid + ";pwd=" + config.password;
         }
     }
 }

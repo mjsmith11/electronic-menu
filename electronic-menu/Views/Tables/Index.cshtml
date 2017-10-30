@@ -1,0 +1,46 @@
+﻿@model IEnumerable<electronic_menu.Models.Table>
+
+@{
+    ViewData["Title"] = "Tables";
+}
+
+<h2>Tables</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Table Number
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        string selectedRow = "";
+        if (item.IsEmpty)
+        {
+            selectedRow = "success";
+        }
+        else
+        {
+            selectedRow = "danger";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.TableID)
+            </td>
+            <td>
+                @if (item.IsEmpty)
+                {
+                    <a asp-action="Seat" asp-route-id="@item.TableID">Seat Customer</a>
+                }
+                @if (!item.IsEmpty)
+                {
+                    <a asp-action="Available" asp-route-id="@item.TableID">Mark Available</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

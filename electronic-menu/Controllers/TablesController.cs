@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using electronic_menu.Data;
-using electronic_menu.Models;
+using electronic_menu.Models.Messaging;
+using electronic_menu.Models.ViewModels;
 
 namespace electronic_menu.Controllers
 {
@@ -25,7 +26,10 @@ namespace electronic_menu.Controllers
                 .AsNoTracking()
                 .OrderByDescending(t => t.IsEmpty)
                 .ThenBy(t => t.TableID);
-            return View(await tables.ToListAsync());
+            TablesWithRequests model = new TablesWithRequests();
+            model.Tables = await tables.ToListAsync();
+            model.WaiterRequests = new List<int>();
+            return View(model);
         }
 
         // GET: Tables/Seat/5
@@ -69,6 +73,22 @@ namespace electronic_menu.Controllers
             }
             return RedirectToAction(nameof(Index));
 
+        }
+
+
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.Client, Duration = 15)]
+        public ActionResult Requests()
+        {
+            List<int> tables = new List<int>();
+            int tableNum;
+            while (MessageBoard.waiterRequests.TryTake(out tableNum))
+            {
+              tables.Add(tableNum);
+            }
+            TablesWithRequests model = new TablesWithRequests();
+            model.WaiterRequests = tables;
+
+            return PartialView("_requests", model);
         }
     }
 }

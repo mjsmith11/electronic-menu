@@ -1,46 +1,55 @@
-﻿@model IEnumerable<electronic_menu.Models.Table>
-
+﻿@model electronic_menu.Models.ViewModels.TablesWithRequests
 @{
     ViewData["Title"] = "Tables";
 }
-
+@section headscripts{
+    <script type="text/javascript">
+        $(function () {
+            setInterval(function () { $('#_waiterrequests').load('Tables/Requests'); }, 15000); // every 3 sec
+        });
+    </script>
+}
+<h2>Waiter Requests</h2>
+<div id="_waiterrequests">
+    @Html.Partial("_requests", Model)
+</div>
 <h2>Tables</h2>
-
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    Table Number
-                </th>
+            <th>
+                Table Number
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        string selectedRow = "";
-        if (item.IsEmpty)
+        @foreach (var item in Model.Tables)
         {
-            selectedRow = "success";
-        }
-        else
-        {
-            selectedRow = "danger";
-        }
-        <tr class="@selectedRow">
-            <td>
-                @Html.DisplayFor(modelItem => item.TableID)
-            </td>
-            <td>
-                @if (item.IsEmpty)
+            string selectedRow = "";
+            if (item.IsEmpty)
+            {
+                selectedRow = "success";
+            }
+            else
+            {
+                selectedRow = "danger";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.TableID)
+                </td>
+                <td>
+                    @if (item.IsEmpty)
                 {
-                    <a asp-action="Seat" asp-route-id="@item.TableID">Seat Customer</a>
-                }
-                @if (!item.IsEmpty)
+                        <a asp-action="Seat" asp-route-id="@item.TableID">Seat Customer</a>
+                    }
+                    @if (!item.IsEmpty)
                 {
-                    <a asp-action="Available" asp-route-id="@item.TableID">Mark Available</a>
-                }
-            </td>
-        </tr>
-}
+                        <a asp-action="Available" asp-route-id="@item.TableID">Mark Available</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

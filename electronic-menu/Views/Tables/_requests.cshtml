@@ -1,0 +1,7 @@
+﻿@model electronic_menu.Models.ViewModels.TablesWithRequests
+<ul>
+    @foreach(var tableNum in Model.WaiterRequests)
+    {
+    <li><h4>Table #@tableNum</h4></li>
+    }
+</ul>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace electronic_menu.Models.Messaging
+namespace web_menu.Models.Messaging
 {
     public class MessageBoard
     {

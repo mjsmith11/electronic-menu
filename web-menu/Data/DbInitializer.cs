@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using electronic_menu.Models;
+using web_menu.Models;
 
-namespace electronic_menu.Data
+namespace web_menu.Data
 {
     public class DbInitializer
     {

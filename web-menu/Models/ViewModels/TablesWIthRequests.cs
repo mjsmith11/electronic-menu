@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace electronic_menu.Models.ViewModels
+namespace web_menu.Models.ViewModels
 {
     public class TablesWithRequests
     {

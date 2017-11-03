@@ -1,7 +1,7 @@
-﻿using electronic_menu.Models;
+﻿using web_menu.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace electronic_menu.Data
+namespace web_menu.Data
 {
     public class MenuContext : DbContext
     {

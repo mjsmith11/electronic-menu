@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using electronic_menu.Data;
+using web_menu.Data;
 using System.IO;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 
-namespace electronic_menu
+namespace web_menu
 {
     public class Startup
     {

@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using electronic_menu.Data;
+using web_menu.Data;
 
-namespace electronic_menu
+namespace web_menu
 {
     public class Program
     {

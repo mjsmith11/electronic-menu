@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using electronic_menu.Models;
+using web_menu.Models;
 
-namespace electronic_menu.Controllers
+namespace web_menu.Controllers
 {
     public class HomeController : Controller
     {

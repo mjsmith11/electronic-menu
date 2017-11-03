@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using electronic_menu.Models.Messaging;
+using web_menu.Models.Messaging;
 
-namespace electronic_menu.Controllers
+namespace web_menu.Controllers
 {
     public class MenuController : Controller
     {

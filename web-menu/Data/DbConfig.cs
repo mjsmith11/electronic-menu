@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace electronic_menu.Data
+namespace web_menu.Data
 {
     public class DbConfig
     {

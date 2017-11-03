@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using electronic_menu.Data;
-using electronic_menu.Models.Messaging;
-using electronic_menu.Models.ViewModels;
+using web_menu.Data;
+using web_menu.Models.Messaging;
+using web_menu.Models.ViewModels;
 
-namespace electronic_menu.Controllers
+namespace web_menu.Controllers
 {
     public class TablesController : Controller
     {

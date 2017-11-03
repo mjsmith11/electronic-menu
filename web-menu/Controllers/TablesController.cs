@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using web_menu.Data;
-using web_menu.Models.Messaging;
-using web_menu.Models.ViewModels;
+using data_models.Models.Messaging;
+using data_models.Models.ViewModels;
 
 namespace web_menu.Controllers
 {

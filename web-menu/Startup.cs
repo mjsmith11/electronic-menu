@@ -62,5 +62,6 @@ namespace web_menu
             }
             return "Server=" + config.server + ";database=" + config.database + ";uid=" + config.uid + ";pwd=" + config.password;
         }
+
     }
 }

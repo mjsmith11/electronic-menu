@@ -1,4 +1,4 @@
-﻿using web_menu.Models;
+﻿using data_models.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace web_menu.Data

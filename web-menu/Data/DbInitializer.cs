@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using web_menu.Models;
+using data_models.Models;
 
 namespace web_menu.Data
 {

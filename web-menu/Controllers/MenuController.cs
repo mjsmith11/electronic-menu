@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using web_menu.Models.Messaging;
+using data_models.Models.Messaging;
 
 namespace web_menu.Controllers
 {

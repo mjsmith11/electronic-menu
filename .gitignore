@@ -303,7 +303,4 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
-electronic-menu/Data/dbconfig.json
-WFApp/dbconfig.json
-data_models/dbconfig.json
 data_models/ConfigInfo.cs

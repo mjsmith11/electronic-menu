@@ -8,7 +8,6 @@ using data_models.Models;
 using System.Net;
 using MySql.Data.MySqlClient;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace playground
 {

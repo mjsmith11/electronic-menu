@@ -1,6 +1,0 @@
-﻿{
-  "server": "<server ip or url>",
-  "database": "<name of db to use>",
-  "uid": "<db server user id>",
-  "password": "<db server password>"
-}

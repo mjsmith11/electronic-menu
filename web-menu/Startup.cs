@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using web_menu.Data;
 using System.IO;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +25,7 @@ namespace web_menu
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MenuContext>(options => options.UseMySql(DbConfig.GetMySQLConnectionString()));
+            services.AddDbContext<NetCoreMenuContext>(options => options.UseMySql(DbConfig.GetMySQLConnectionString()));
             services.AddMvc();
         }
 

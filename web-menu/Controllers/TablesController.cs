@@ -4,17 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using web_menu.Data;
 using data_models.Models.Messaging;
 using data_models.Models.ViewModels;
+using data_models;
 
 namespace web_menu.Controllers
 {
     public class TablesController : Controller
     {
-        private readonly MenuContext _context;
+        private readonly NetCoreMenuContext _context;
 
-        public TablesController(MenuContext context)
+        public TablesController(NetCoreMenuContext context)
         {
             _context = context;
         }

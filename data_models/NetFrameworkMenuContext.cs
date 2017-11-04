@@ -16,7 +16,6 @@ namespace data_models
 
         public NetFrameworkMenuContext(DbConnection existingConnection, bool contextOwnsConnection) : base(existingConnection, contextOwnsConnection)
         {
-
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

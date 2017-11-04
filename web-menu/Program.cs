@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using web_menu.Data;
+using data_models;
 
 namespace web_menu
 {
@@ -23,7 +23,7 @@ namespace web_menu
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<MenuContext>();
+                    var context = services.GetRequiredService<NetCoreMenuContext>();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)

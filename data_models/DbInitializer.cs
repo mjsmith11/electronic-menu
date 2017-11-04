@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using data_models.Models;
 
-namespace web_menu.Data
+namespace data_models
 {
     public class DbInitializer
     {
-        public static void Initialize(MenuContext context)
+        public static void Initialize(NetCoreMenuContext context)
         {
             context.Database.EnsureCreated();
 
@@ -20,7 +20,7 @@ namespace web_menu.Data
             seedTables(context);
         }
 
-        public static void seedTables(MenuContext context)
+        public static void seedTables(NetCoreMenuContext context)
         {
             var tables = new Table[]
             {

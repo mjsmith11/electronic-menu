@@ -1,11 +1,11 @@
 ﻿using data_models.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace web_menu.Data
+namespace data_models
 {
-    public class MenuContext : DbContext
+    public class NetCoreMenuContext : DbContext
     {
-        public MenuContext(DbContextOptions<MenuContext> options) : base(options)
+        public NetCoreMenuContext(DbContextOptions<NetCoreMenuContext> options) : base(options)
         {
         }
 

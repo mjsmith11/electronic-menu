@@ -5,7 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="dbconfig.json" />
+    <Content Include="example_dbconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="MySql.Data" Version="6.8.8" />
+    <PackageReference Include="MySql.Data.Entity" Version="6.8.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 
 </Project>

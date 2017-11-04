@@ -305,3 +305,4 @@ __pycache__/
 OpenCover/
 electronic-menu/Data/dbconfig.json
 WFApp/dbconfig.json
+data_models/dbconfig.json

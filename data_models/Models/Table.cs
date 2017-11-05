@@ -14,5 +14,7 @@ namespace data_models.Models
         public int TableID { get; set; }
 
         public bool IsEmpty { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }

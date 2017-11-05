@@ -36,21 +36,24 @@ CREATE TABLE IF NOT EXISTS `electronic_menu`.`Order` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
-CREATE TABLE `electronic_menu`.`OrderItem` (
+CREATE TABLE IF NOT EXISTS `electronic_menu`.`OrderItem` (
   `OrderItemID` INT(11) NOT NULL,
   `OrderID` INT(11) NOT NULL,
   `MenuItemID` INT(11) NOT NULL,
+  `Quantity` INT(11) NOT NULL,
   PRIMARY KEY (`OrderItemID`),
   INDEX `Order_idx` (`OrderID` ASC),
   INDEX `MenuItem_idx` (`MenuItemID` ASC),
-  CONSTRAINT `Order`
-    FOREIGN KEY (`OrderID`)
-    REFERENCES `electronic_menu`.`Order` (`OrderID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `MenuItem`
     FOREIGN KEY (`MenuItemID`)
     REFERENCES `electronic_menu`.`MenuItem` (`MenuItemID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION,
+  CONSTRAINT `Order`
+    FOREIGN KEY (`OrderID`)
+    REFERENCES `electronic_menu`.`Order` (`OrderID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 

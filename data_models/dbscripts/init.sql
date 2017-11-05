@@ -6,9 +6,10 @@ CREATE TABLE IF NOT EXISTS `electronic_menu`.`MenuItem` (
   `DiscountPrice` DECIMAL(65,30) NULL DEFAULT NULL,
   `Category` VARCHAR(20) NOT NULL,
   `IsAvailable` BIT(1) NOT NULL,
+  `IsSpecialty` BIT(1) NULL DEFAULT b'0',
   PRIMARY KEY (`MenuItemID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 53
+AUTO_INCREMENT = 206
 DEFAULT CHARACTER SET = latin1;
 
 

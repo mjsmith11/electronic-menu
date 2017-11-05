@@ -52,7 +52,7 @@ namespace data_models
         {
             var items = new MenuItem[]
             {
-                new MenuItem {Category="Appetizers", Title = "Shrimp Cocktail ★", Description = "4 jumbo shrimp served with our spicy, signature cocktail sauce", Price = 15, IsAvailable=true},
+                new MenuItem {Category="Appetizers", Title = "Shrimp Cocktail", IsSpecialty=true, Description = "4 jumbo shrimp served with our spicy, signature cocktail sauce", Price = 15, IsAvailable=true},
                 new MenuItem {Category="Appetizers", Title = "Seared Ahi Tuna", Description = "Perfectly complemented by a spirited sauce with hints of ginger, mustard and beer", Price = 17, IsAvailable=true},
                 new MenuItem {Category="Appetizers", Title = "Chilled Seafood Tower", Description = "Maine lobster, king crab legs and knuckles, colossal lump crab meat and jumbo cocktail shrimp served with both Sriracha-lime seafood sauce and cocktail sauce.", Price = 59, IsAvailable=true},
                 new MenuItem {Category="Appetizers", Title = "Sizzling Blue Crab Cakes", Description = "Two jumbo lump crab cakes served with sizzling lemon butter.", Price = 19, IsAvailable=true},
@@ -62,7 +62,7 @@ namespace data_models
                 new MenuItem {Category="Steaks", Title = "Porterhouse Steak", Description = "28 oz. bone-in cut, combines the rich flavor of a strip with the tenderness of a filet.", Price = 59, IsAvailable=true},
                 new MenuItem {Category="Steaks", Title = "Bone-In (Cowboy) Ribeye", Description = "20 oz. exceptional flavor, great balance of marbling.", Price = 49, IsAvailable=true},
                 new MenuItem {Category="Steaks", Title = "Ribeye", Description = "14 oz. excellent marbling, loaded with flavor.", Price = 39, DiscountPrice = 35, IsAvailable=true},
-                new MenuItem {Category="Steaks", Title = "Bone-In Filet ★", Description = "14 oz. lean & full of flavor.", Price = 55, IsAvailable=true},
+                new MenuItem {Category="Steaks", Title = "Bone-In Filet", IsSpecialty=true, Description = "14 oz. lean & full of flavor.", Price = 55, IsAvailable=true},
                 new MenuItem {Category="Steaks", Title = "Filet Mignon", Description = "12 oz. tender, center-cut.", Price = 52, IsAvailable=true},
                 new MenuItem {Category="Steaks", Title = "New York Strip", Description = "14 oz. flavorful strip with a mid-range of marbling.", Price = 41, IsAvailable=true},
                 new MenuItem {Category="Steaks", Title = "Flat Iron", Description = "12 oz. naturally lean, exclusively grass-fed.", Price = 42, IsAvailable=true},
@@ -77,7 +77,7 @@ namespace data_models
                 new MenuItem {Category="Seafood", Title = "Fresh Fish", Description = "Seasonal selection, chef preparation.", Price = 61, IsAvailable=true},
                 new MenuItem {Category="Seafood", Title = "Sashimi Yellowfin Tuna", Description = "#1 grade ahi tuna, traditional accoutrements", Price = 34, IsAvailable=true},
                 new MenuItem {Category="Seafood", Title = "South African Lobster Tails", Description = "Two 8 oz. succulent cold water lobster tails, drawn butter, grilled lemon.", Price = 79, IsAvailable=true},
-                new MenuItem {Category="Seafood", Title = "Surf 'n Turf ★", Description = "8 oz. South African lobster tail and 8 oz. filet mignon.", Price = 79, IsAvailable=true},
+                new MenuItem {Category="Seafood", Title = "Surf 'n Turf", IsSpecialty=true, Description = "8 oz. South African lobster tail and 8 oz. filet mignon.", Price = 79, IsAvailable=true},
                 new MenuItem {Category="Seafood", Title = "French Fried Shrimp", Description = "5 golden crusted jumbo shrimp.", Price = 27, DiscountPrice = 24, IsAvailable=true},
                 new MenuItem {Category="Seafood", Title = "King Crab and Shrimp Linguine", Description = "Alaskan king crab, shrimp, tomatoes, pesto-cream sauce.", Price = 38, IsAvailable=true},
 
@@ -101,14 +101,14 @@ namespace data_models
                 new MenuItem {Category="Sides", Title = "Navy Bean Soup", IsAvailable=true},
                 new MenuItem {Category="Sides", Title = "Tomato Juice", IsAvailable=true},
 
-                new MenuItem {Category="Desserts", Title = "Cheesecake", Description = "Traditional New York style with a graham cracker crust.", Price = 10, IsAvailable=true},
-                new MenuItem {Category="Desserts", Title = "Cheesecake w/ Topping", Description = "With raspberry puree or hot fudge.", Price = 12, IsAvailable=true},
-                new MenuItem {Category="Desserts", Title = "Chocolate Cake", Description = "4-Layer Rich Chocolate Cake with Dark Fudge Frosting.", Price = 12, IsAvailable=true},
-                new MenuItem {Category="Desserts", Title = "Crème Brulee ★", Description = "Traditional French recipe, prepared with Madagascar vanilla beans.", Price = 8, IsAvailable=true},
-                new MenuItem {Category="Desserts", Title = "Sliced Tomato & Onion", Description = "Beefsteak tomatoes, onions, house vinaigrette, Gorgonzola.", Price = 10, IsAvailable=true},
-                new MenuItem {Category="Desserts", Title = "Sliced Tomato & Onion", Description = "Beefsteak tomatoes, onions, house vinaigrette, Gorgonzola.", Price = 10, IsAvailable=true},
-                new MenuItem {Category="Desserts", Title = "Sliced Tomato & Onion", Description = "Beefsteak tomatoes, onions, house vinaigrette, Gorgonzola.", Price = 10, IsAvailable=true},
-                new MenuItem {Category="Desserts", Title = "Sliced Tomato & Onion", Description = "Beefsteak tomatoes, onions, house vinaigrette, Gorgonzola.", Price = 10, IsAvailable=true},
+                new MenuItem {Category="Desserts", Title = "Cheesecake", Description = "Traditional New York style with a graham cracker crust.", Price = (decimal)9.5, IsAvailable=true},
+                new MenuItem {Category="Desserts", Title = "Cheesecake w/ Topping", Description = "With raspberry puree or hot fudge.", Price = (decimal)11.5, IsAvailable=true},
+                new MenuItem {Category="Desserts", Title = "Chocolate Cake", Description = "4-Layer Rich Chocolate Cake with Dark Fudge Frosting.", Price = (decimal)11.5, IsAvailable=true},
+                new MenuItem {Category="Desserts", Title = "Crème Brulee", IsSpecialty=true, Description = "Traditional French recipe, prepared with Madagascar vanilla beans.", Price = 8, IsAvailable=true},
+                new MenuItem {Category="Desserts", Title = "White Chocolate Blueberry Bread Pudding", Description = "Served with bourbon bream sauce & vanilla ice cream. ", Price = (decimal)10.5, IsAvailable=true},
+                new MenuItem {Category="Desserts", Title = "Butter Cake", Description = "House-made butter cake with Luxardo cherries, crème anglaise, served with ice cream.", Price = (decimal)10.95, IsAvailable=true},
+                new MenuItem {Category="Desserts", Title = "Seasonal Pie", Description = "Baked locally by My Sugar Pie in nearby town of Zionsville.", Price = (decimal)11.5, IsAvailable=true},
+                new MenuItem {Category="Desserts", Title = "Pie à la Mode", Description = "With vanilla ice cream.", Price = (decimal)13.5, IsAvailable=true},
 
 
             };

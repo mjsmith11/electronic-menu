@@ -24,5 +24,6 @@ namespace data_models.Models
         public string Category { get; set; }
         [Required]
         public bool IsAvailable { get; set; }
+        public bool IsSpecialty { get; set; }
     }
 }

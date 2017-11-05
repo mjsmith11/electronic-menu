@@ -1,264 +1,56 @@
-﻿
+﻿@model List<List<data_models.Models.MenuItem>>
 @{
     ViewData["Title"] = "Menu";
 }
- @section headscripts{
+@section headscripts{
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('h4 span:first-child').after("<span class=\"dots\"> </span>");
-    });
-    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('h4 span:first-child').after("<span class=\"dots\"> </span>");
+        });
+
     </script>
- }
-    <h2>Menu</h2>
+}
+<h2>Menu</h2>
+<p>
     <a asp-action="CallWaiter">Call Waiter</a>
-    
-    <div class="menu-section">
-        <h3>Appetizer</h3>
-        <div class="menu-container">
-            <h4 class="menu">
-                <span>Shrimp Cocktail ★</span>
-                <span>15</span>
-            </h4>
-            <p>4 jumbo shrimp served with our spicy, signature cocktail sauce</p>
-            <h4 class="menu">
-                <span>Seared Ahi Tuna</span>
-                <span>17</span>
-            </h4>
-            <p>Perfectly complemented by a spirited sauce with hints of ginger, mustard and beer</p>
-            <h4 class="menu">
-                <span>Chilled Seafood Tower</span>
-                <span>59</span>
-            </h4>
-            <p>Maine lobster, king crab legs and knuckles, colossal lump crab meat and jumbo cocktail shrimp served with both Sriracha-lime seafood sauce and cocktail sauce.</p>
-            <h4 class="menu">
-                <span>Sizzling Blue Crab Cakes</span>
-                <span>19</span>
-            </h4>
-            <p>Two jumbo lump crab cakes served with sizzling lemon butter.</p>
-            <h4 class="menu">
-                <span>Veal Osso Buco Ravoli</span>
-                <span>15</span>
-            </h4>
-            <p>Saffron-infused pasta filled with veal osso buco and fresh mozzarella cheese and topped with a white wine demi-glace.</p>
-            <h4 class="menu">
-                <span>Crispy Lobster Tail</span>
-                <span>22</span>
-            </h4>
-            <p>Cold water lobster tail, lightly fried, tossed in a spicy cream sauce, jalapeno pepper jam drizzle, tangy cucumber salad.</p>
-
+</p>
+<p>All entrées are served with your choice of two side dishes</p>
+@{
+    @foreach (var CategoryList in Model)
+    {
+        <div class="menu-section">
+            <h3>@Html.DisplayFor(menuLine => CategoryList.ElementAt(0).Category)</h3> <!--Since the category should be the same in all elements of Category list, just take the first-->
+            <div class="menu-container">
+                @foreach (var item in CategoryList)
+                {
+                    string title = item.Title;
+                    if (item.IsSpecialty)
+                    {
+                        title = title + " ★";
+                    }
+                    <h4 class="menu">
+                        @if (item.Price == null)
+                        {
+                            @Html.DisplayFor(name => title)
+                        }
+                        else
+                        {
+                            <span>@Html.DisplayFor(name => title)</span>
+                            @if (item.DiscountPrice == null)
+                            {
+                                <span>@Html.DisplayFor(price => item.Price)</span>
+                            }
+                            else
+                            {
+                                <span class="menu-discount"><del>@Html.DisplayFor(price => item.Price)</del> @Html.DisplayFor(discount => item.DiscountPrice)</span>
+                            }
+                        }
+                    </h4>
+                    <p>@Html.DisplayFor(desc => item.Description)</p>
+                }
+            </div>
         </div>
-    </div>
+    }
 
-    <div class="menu-section">
-        <h3>Steaks</h3>
-        <p>Includes navy bean soup or tomato juice &amp; choice of baked potato, fresh-cut fries, redskin mashed potatos or sauteed green beans</p>
-        <div class="menu-container">
-            <h4 class="menu">
-                <span>Porterhouse Steak</span>
-                <span>59</span>
-            </h4>
-            <p>28 oz. bone-in cut, combines the rich flavor of a strip with the tenderness of a filet.</p>
-            <h4 class="menu">
-                <span>Bone-In (Cowboy) Ribeye</span>
-                <span>49</span>
-            </h4>
-            <p>20 oz. exceptional flavor, great balance of marbling.</p>
-            <h4 class="menu">
-                <span>Ribeye</span>
-                <span class="menu-discount"><del>39</del> 35</span>
-            </h4>
-            <p>14 oz. excellent marbling, loaded with flavor.</p>
-            <h4 class="menu">
-                <span>Bone-In Filet ★</span>
-                <span>55</span>
-            </h4>
-            <p>14 oz. lean & full of flavor.</p>
-            <h4 class="menu">
-                <span>Filet Mignon</span>
-                <span>41/52</span>
-            </h4>
-            <p>8 oz. / 12 oz. tender, center-cut.</p>
-            <h4 class="menu">
-                <span>New York Strip</span>
-                <span>41</span>
-            </h4>
-            <p>14 oz. flavorful strip with a mid-range of marbling.</p>
-            <h4 class="menu">
-                <span>Flat Iron</span>
-                <span>42</span>
-            </h4>
-            <p>12 oz. naturally lean, exclusively grass-fed.</p>
-            <h4 class="menu">
-                <span>Bone-In Prime Rib</span>
-                <span>55</span>
-            </h4>
-            <p>38 oz. of flavorful balanced marbling, slow roasted, finished to temperature. Limited availability. </p>
-            <h4 class="menu">
-                <span>Dry-Aged NY Strip</span>
-                <span>55</span>
-            </h4>
-            <p>12 oz. USDA Prime Angus. Aged 60 Days.</p>
-
-        </div>
-    </div>
-
-<div class="menu-section">
-    <h3>Chops and Chicken</h3>
-    <p>Includes navy bean soup or tomato juice &amp; choice of baked potato, fresh-cut fries, redskin mashed potatos or sauteed green beans</p>
-    <div class="menu-container">
-        <h4 class="menu">
-            <span>Lamb Chops</span>
-            <span>59</span>
-        </h4>
-        <p>Locally sourced from Viking Farms, with Gorgonzola fondue.</p>
-        <h4 class="menu">
-            <span>Pork Chops</span>
-            <span>27</span>
-        </h4>
-        <p>3 all-natural 7 oz. French-cut grilled chops locally sourced from Fischer Farms.</p>
-        <h4 class="menu">
-            <span>Dry-Aged Prime Chopped Steak</span>
-            <span>25</span>
-        </h4>
-        <p>20 oz. with sautéed onions, smothered in Gorgonzola.</p>
-        <h4 class="menu">
-            <span>Chicken</span>
-            <span>25</span>
-        </h4>
-        <p>Pan-seared chicken breasts with baby rainbow carrots, pea shoots, and a wild mushroom demi-glace.</p>
-    </div>
-</div>
-
-<div class="menu-section">
-    <h3>Seafood</h3>
-    <p>Includes navy bean soup or tomato juice &amp; choice of baked potato, fresh-cut fries, redskin mashed potatos or sauteed green beans</p>
-    <div class="menu-container">
-        <h4 class="menu">
-            <span>Fresh Fish</span>
-            <span>Market</span>
-        </h4>
-        <p>Seasonal selection, chef preparation.</p>
-        <h4 class="menu">
-            <span>Sashimi Yellowfin Tuna</span>
-            <span>34</span>
-        </h4>
-        <p>#1 grade ahi tuna, traditional accoutrements</p>
-        <h4 class="menu">
-            <span>South African Lobster Tails</span>
-            <span>79</span>
-        </h4>
-        <p>Two 8 oz. succulent cold water lobster tails, drawn butter, grilled lemon.</p>
-        <h4 class="menu">
-            <span>Surf 'n Turf ★</span>
-            <span>79</span>
-        </h4>
-        <p>8 oz. South African lobster tail and 8 oz. filet mignon.</p>
-        <h4 class="menu">
-            <span>French Fried Shrimp</span>
-            <span class="menu-discount"><del>27</del> 24</span>
-        </h4>
-        <p>5 golden crusted jumbo shrimp.</p>
-        <h4 class="menu">
-            <span>King Crab and Shrimp Linguine</span>
-            <span>38</span>
-        </h4>
-        <p>Alaskan king crab, shrimp, tomatoes, pesto-cream sauce.</p>
-
-    </div>
-</div>
-
-<div class="menu-section">
-    <h3>Salads</h3>
-    <div class="menu-container">
-        <h4 class="menu">
-            <span>House Wedge</span>
-            <span>10</span>
-        </h4>
-        <p>Bacon, tomatoes, creamy Gorgonzola</p>
-        <h4 class="menu">
-            <span>Caesar</span>
-            <span>10</span>
-        </h4>
-        <p>Romaine, shaved Parmigiano-Reggiano, herb crust. </p>
-        <h4 class="menu">
-            <span>Chopped BLT</span>
-            <span>10</span>
-        </h4>
-        <p>Romaine with house vinaigrette, Gorgonzola cheese, tomatoes, bacon, fried onions</p>
-        <h4 class="menu">
-            <span>Spinach</span>
-            <span>10</span>
-        </h4>
-        <p>Orange segments, candied walnuts, mustard-bacon vinaigrette.</p>
-        <h4 class="menu">
-            <span>Sliced Tomato &amp; Onion</span>
-            <span>10</span>
-        </h4>
-        <p>Beefsteak tomatoes, onions, house vinaigrette, Gorgonzola.</p>
-    </div>
-</div>
-
-<div class="menu-section">
-    <h3>Additional Sides</h3>
-    <div class="menu-container">
-        <h4 class="menu">Sautéed Green Beans</h4>
-        <h4 class="menu">Creamed Spinach</h4>
-        <h4 class="menu">Sautéed Mushrooms</h4>
-        <h4 class="menu">King Crab Mac 'n Cheese</h4>
-        <h4 class="menu">Loaded Baked Potato</h4>
-        <h4 class="menu">Baked Potato</h4>
-        <h4 class="menu">Redskin Mashed Potatoes</h4>
-        <h4 class="menu">Fresh-Cut Fries</h4>
-        <h4 class="menu">House-Made Onion Rings</h4>
-        <h4 class="menu">Brussel Sprouts</h4>
-        <h4 class="menu">Au Gratin Potatoes</h4>
-    </div>
-</div>
-
-<div class="menu-section">
-    <h3>Desserts</h3>
-    <div class="menu-container">
-        <h4 class="menu">
-            <span>Cheesecake</span>
-            <span>9.50</span>
-        </h4>
-        <p>Traditional New York style with a graham cracker crust.</p>
-        <h4 class="menu">
-            <span>Cheesecake w/ Topping</span>
-            <span>11.50</span>
-        </h4>
-        <p>With raspberry puree or hot fudge. </p>
-        <h4 class="menu">
-            <span>Chocolate Cake</span>
-            <span>11.50</span>
-        </h4>
-        <p>4-Layer Rich Chocolate Cake with Dark Fudge Frosting.</p>
-        <h4 class="menu">
-            <span>Crème Brulee ★</span>
-            <span>8.00</span>
-        </h4>
-        <p>Traditional French recipe, prepared with Madagascar vanilla beans.</p>
-        <h4 class="menu">
-            <span>White Chocolate Blueberry Bread Pudding</span>
-            <span>10.50</span>
-        </h4>
-        <p>Served with bourbon bream sauce & vanilla ice cream. </p>
-        <h4 class="menu">
-        <span>Butter Cake</span>
-        <span>10.95</span>
-        </h4>
-        <p>House-made butter cake with Luxardo cherries, crème anglaise, served with ice cream.</p>
-        <h4 class="menu">
-            <span>Seasonal Pie</span>
-            <span>11.50</span>
-        </h4>
-        <p>Baked locally by My Sugar Pie in nearby town of Zionsville.</p>
-        <h4 class="menu">
-            <span>Pie à la Mode</span>
-            <span>13.50</span>
-        </h4>
-        <p>With vanilla ice cream. </p>
-    </div>
-</div>
+}

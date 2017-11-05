@@ -13,6 +13,7 @@ namespace data_models
     public class NetFrameworkMenuContext : DbContext
     {
         public DbSet<Table> Table { get; set; }
+        public DbSet<MenuItem> MenuItems { get; set; }
 
         public NetFrameworkMenuContext(DbConnection existingConnection, bool contextOwnsConnection) : base(existingConnection, contextOwnsConnection)
         {
@@ -21,6 +22,7 @@ namespace data_models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Table>().ToTable("Table");
+            modelBuilder.Entity<MenuItem>().ToTable("MenuItem");
         }
 
         public static NetFrameworkMenuContext GetContext()

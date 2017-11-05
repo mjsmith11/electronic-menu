@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `electronic_menu`.`MenuItem` (
+  `MenuItemID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Title` VARCHAR(50) NOT NULL,
+  `Description` VARCHAR(250) NULL DEFAULT NULL,
+  `Price` DECIMAL(65,30) NULL DEFAULT NULL,
+  `DiscountPrice` DECIMAL(65,30) NULL DEFAULT NULL,
+  `Category` VARCHAR(20) NOT NULL,
+  `IsAvailable` BIT(1) NOT NULL,
+  PRIMARY KEY (`MenuItemID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 53
+DEFAULT CHARACTER SET = latin1;
+
+
+CREATE TABLE IF NOT EXISTS `electronic_menu`.`Table` (
+  `TableID` INT(11) NOT NULL,
+  `IsEmpty` BIT(1) NOT NULL,
+  PRIMARY KEY (`TableID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;

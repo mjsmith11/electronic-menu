@@ -10,10 +10,12 @@ namespace data_models
         }
 
         public DbSet<Table> Tables { get; set; }
+        public DbSet<MenuItem> MenuItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Table>().ToTable("Table");
+            modelBuilder.Entity<MenuItem>().ToTable("MenuItem");
         }
     }
 }

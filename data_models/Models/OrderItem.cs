@@ -20,5 +20,18 @@ namespace data_models.Models
         //Navigation Properties
         public Order Order { get; set; }
         public MenuItem MenuItem { get; set; }
+
+        [DataType(DataType.Currency)]
+        public decimal ExtendedPrice {
+            get
+            {
+                if (MenuItem.Price == null)
+                    return 0;
+                if (MenuItem.DiscountPrice == null)
+                    return (decimal)MenuItem.Price * Quantity;
+                else
+                    return (decimal)MenuItem.DiscountPrice * Quantity;
+            }
+            }
     }
 }

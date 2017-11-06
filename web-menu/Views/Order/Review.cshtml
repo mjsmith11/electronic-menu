@@ -1,0 +1,57 @@
+﻿@model data_models.Models.Order
+@{
+    ViewData["Title"] = "Review Order";
+}
+<h2>Review Order</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Item
+            </th>
+            <th>
+                Price Each
+            </th>
+            <th>
+                Extended Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuItem.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuItem.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtendedPrice)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.OrderItemID">Remove</a>
+                </td>
+            </tr>
+        }
+        <tr class="alert-info">
+            <td></td>
+            <td></td>
+            <td>
+                <h3>Total</h3>
+            </td>
+            <td>
+                <h3>@ViewData["Total"]</h3>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

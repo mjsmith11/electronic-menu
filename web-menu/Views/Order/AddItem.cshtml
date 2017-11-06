@@ -15,7 +15,7 @@ else
 @if (ViewData["Added"] != null)
 {
     <h4>Your selection has been added to your order</h4>
-        <a><h5>Review Order </h5></a>
+        <a asp-action="Review" asp-route-id="@ViewData["OrderID"]"><h5>Review Order </h5></a>
         <a asp-action="Index" asp-controller="Menu"><h5>Return To Menu </h5></a>
 }
 else

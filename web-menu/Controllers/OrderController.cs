@@ -106,7 +106,36 @@ namespace web_menu.Controllers
 
             var menuItem = await _context.MenuItems.SingleAsync(m => m.MenuItemID == ItemId);
             ViewData["Added"] = 1;
+            ViewData["OrderID"] = orderId;
             return View(menuItem);
+        }
+
+        public async Task<IActionResult> Review(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var order = await _context.Orders
+                .AsNoTracking()
+                .Include(o => o.OrderItems)
+                .ThenInclude(i => i.MenuItem)
+                .SingleOrDefaultAsync(o => o.OrderID == id);
+
+            double total = 0;
+            foreach(var orderItem in order.OrderItems)
+            {
+                if (orderItem.MenuItem.Price == null)
+                    continue;
+                if (orderItem.MenuItem.DiscountPrice == null)
+                    total += (double)(orderItem.MenuItem.Price*orderItem.Quantity);
+                else
+                    total += (double)(orderItem.MenuItem.DiscountPrice*orderItem.Quantity);
+            }
+
+            ViewData["Total"] = total.ToString("C");
+
+            return View(order);
         }
 
         private bool IncludesSides(MenuItem m)

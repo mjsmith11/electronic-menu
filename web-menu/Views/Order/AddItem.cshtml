@@ -1,0 +1,64 @@
+﻿@model data_models.Models.MenuItem
+@{
+    ViewData["Title"] = @Html.DisplayFor(m => Model.Title);
+}
+<h2>@Html.DisplayFor(m => Model.Title)</h2>
+@if (Model.DiscountPrice == null)
+{
+    <h3>@Html.DisplayFor(m => Model.Price)</h3>
+}
+else
+{
+    <h3>@Html.DisplayFor(m => Model.DiscountPrice)</h3>
+}
+<hr />
+@if (ViewData["Added"] != null)
+{
+    <h4>Your selection has been added to your order</h4>
+        <a><h5>Review Order </h5></a>
+        <a asp-action="Index" asp-controller="Menu"><h5>Return To Menu </h5></a>
+}
+else
+{
+    @if (Model.IsAvailable)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="AddItem" method="post">
+                    <input type="hidden" name="ItemId" value="@Model.MenuItemID" />
+                    @if (ViewBag.TableId != null)
+                    {
+                        <div class="form-group">
+                            <label class="control-label">Table Number</label>
+                            <select asp-items="ViewBag.TableId" name="TableId" class="form-control"></select>
+                        </div>
+                        <hr />
+                    }
+                    <div class="form-group">
+                        <label class="control-label">Quantity</label>
+                        <input class="form-control" name="Quantity" type="number" min="1" max="10" value="1" />
+                    </div>
+                    @if (ViewBag.SideId != null)
+                    {
+                        <div class="form-group">
+                            <label class="control-label">Side #1</label>
+                            <select asp-items="ViewBag.SideId" name="SideId1" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Side #2</label>
+                            <select asp-items="ViewBag.SideId" name="SideId2" class="form-control"></select>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <input type="submit" value="Add to Order" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h4>This menu selection is currently unavailable.</h4>
+        <a asp-controller="Menu" asp-action="Index">Back to the Menu</a>
+    }
+}

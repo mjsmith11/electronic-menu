@@ -129,3 +129,11 @@ h4.menu:after {
 .menu-discount {
     color:green;
 }
+a.menu-item {
+    color:black;
+}
+
+a.menu-item:hover {
+    text-decoration:none;
+    font-weight:bolder;
+}

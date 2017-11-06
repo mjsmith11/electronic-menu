@@ -26,7 +26,9 @@ namespace web_menu
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NetCoreMenuContext>(options => options.UseMySql(DbConfig.GetMySQLConnectionString()));
-            services.AddMvc();
+            services.AddMvc()
+                .AddSessionStateTempDataProvider();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +46,7 @@ namespace web_menu
 
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

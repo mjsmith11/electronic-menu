@@ -48,13 +48,19 @@ namespace web_menu.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CallWaiter(int? TableID)
+        public IActionResult CallWaiter(int? TableID, string request)
         {
             if (TableID == null)
             {
                 return NotFound();
             }
-            MessageBoard.waiterRequests.Add((int)TableID);
+            WaiterRequest r = new WaiterRequest
+            {
+                TableNumber = (int)TableID,
+                Request = request
+            };
+
+            MessageBoard.waiterRequests.Add(r);
 
             return RedirectToAction(nameof(Index));
         }

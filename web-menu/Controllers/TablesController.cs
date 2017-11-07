@@ -28,7 +28,7 @@ namespace web_menu.Controllers
                 .ThenBy(t => t.TableID);
             TablesWithRequests model = new TablesWithRequests();
             model.Tables = await tables.ToListAsync();
-            model.WaiterRequests = new List<int>();
+            model.WaiterRequests = new List<WaiterRequest>();
             return View(model);
         }
 
@@ -79,14 +79,15 @@ namespace web_menu.Controllers
         [ResponseCache(NoStore = true, Location = ResponseCacheLocation.Client, Duration = 15)]
         public ActionResult Requests()
         {
-            List<int> tables = new List<int>();
-            int tableNum;
-            while (MessageBoard.waiterRequests.TryTake(out tableNum))
+            List<WaiterRequest> tables = new List<WaiterRequest>();
+            while (MessageBoard.waiterRequests.TryTake(out WaiterRequest r))
             {
-              tables.Add(tableNum);
+                tables.Add(r);
             }
-            TablesWithRequests model = new TablesWithRequests();
-            model.WaiterRequests = tables;
+            TablesWithRequests model = new TablesWithRequests
+            {
+                WaiterRequests = tables
+            };
 
             return PartialView("_requests", model);
         }

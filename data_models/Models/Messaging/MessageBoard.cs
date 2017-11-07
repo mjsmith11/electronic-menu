@@ -8,6 +8,6 @@ namespace data_models.Models.Messaging
 {
     public class MessageBoard
     {
-        public static ConcurrentBag<int> waiterRequests = new ConcurrentBag<int>();
+        public static ConcurrentBag<WaiterRequest> waiterRequests = new ConcurrentBag<WaiterRequest>();
     }
 }

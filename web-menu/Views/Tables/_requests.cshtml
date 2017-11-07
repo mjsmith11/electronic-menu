@@ -1,7 +1,7 @@
 ﻿@model data_models.Models.ViewModels.TablesWithRequests
 <ul>
-    @foreach(var tableNum in Model.WaiterRequests)
+    @foreach(var request in Model.WaiterRequests)
     {
-    <li><h4>Table #@tableNum</h4></li>
+    <li><h4>Table #@request.TableNumber - @request.Request</h4></li>
     }
 </ul>

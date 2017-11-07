@@ -125,12 +125,7 @@ namespace web_menu.Controllers
             double total = 0;
             foreach(var orderItem in order.OrderItems)
             {
-                if (orderItem.MenuItem.Price == null)
-                    continue;
-                if (orderItem.MenuItem.DiscountPrice == null)
-                    total += (double)(orderItem.MenuItem.Price*orderItem.Quantity);
-                else
-                    total += (double)(orderItem.MenuItem.DiscountPrice*orderItem.Quantity);
+                total += (double)orderItem.ExtendedPrice;
             }
 
             ViewData["Total"] = total.ToString("C");

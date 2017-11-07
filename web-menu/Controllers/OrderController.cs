@@ -133,6 +133,60 @@ namespace web_menu.Controllers
             return View(order);
         }
 
+        public async Task<IActionResult> DeleteItem(int? id, bool? saveChangesError=false)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var orderItem = await _context.OrderItems
+                .AsNoTracking()
+                .Include(o => o.MenuItem)
+                .SingleOrDefaultAsync(o => o.OrderItemID == id);
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] = "Failed to remove the item from your order.  Please try again.";
+            }
+
+            return View(orderItem);
+                
+        }
+
+        [HttpPost, ActionName("DeleteItem")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteItemConfirmed(int id)
+        {
+            var orderItem = await _context.OrderItems
+                .AsNoTracking()
+                .SingleOrDefaultAsync(o => o.OrderItemID == id);
+
+            if (orderItem == null)
+            {
+                return RedirectToOrderOrMenu();
+            }
+
+            try
+            {
+                _context.OrderItems.Remove(orderItem);
+                await _context.SaveChangesAsync();
+                return RedirectToOrderOrMenu();
+            }
+            catch(DbUpdateException)
+            {
+                return RedirectToAction(nameof(DeleteItem), new { id = id, saveChangesError = true });
+            }
+        }
+
+        private IActionResult RedirectToOrderOrMenu()
+        {
+            if (HttpContext.Session.TryGetValue("OrderID", out byte[] orderIdBytes))
+                return RedirectToAction(nameof(Review), new { id = int.Parse(Encoding.ASCII.GetString(orderIdBytes)) });
+            else
+                return RedirectToAction(nameof(Index), nameof(MenuController));
+        }
+
         private bool IncludesSides(MenuItem m)
         {
             if (CategoriesWithSides.Contains(m.Category))

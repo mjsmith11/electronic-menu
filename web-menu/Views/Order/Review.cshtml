@@ -3,6 +3,7 @@
     ViewData["Title"] = "Review Order";
 }
 <h2>Review Order</h2>
+
 <table class="table">
     <thead>
         <tr>
@@ -38,7 +39,7 @@
                     @Html.DisplayFor(modelItem => item.ExtendedPrice)
                 </td>
                 <td>
-                    <a asp-action="Delete" asp-route-id="@item.OrderItemID">Remove</a>
+                    <a asp-action="DeleteItem" asp-route-id="@item.OrderItemID">Remove</a>
                 </td>
             </tr>
         }
@@ -55,3 +56,5 @@
         </tr>
     </tbody>
 </table>
+
+<a asp-action="Index" asp-controller="Menu">Back to Menu</a>

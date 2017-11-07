@@ -16,6 +16,7 @@ namespace data_models.Models
         [StringLength(250)]
         public string Description { get; set; }
         [DataType(DataType.Currency)]
+        [Display(Name ="Price Each")]
         public decimal? Price { get; set; }
         [DataType(DataType.Currency)]
         public decimal? DiscountPrice { get; set; }

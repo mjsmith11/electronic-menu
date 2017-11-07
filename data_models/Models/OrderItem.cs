@@ -20,7 +20,8 @@ namespace data_models.Models
         //Navigation Properties
         public Order Order { get; set; }
         public MenuItem MenuItem { get; set; }
-
+        
+        [Display(Name ="Extended Price")]
         [DataType(DataType.Currency)]
         public decimal ExtendedPrice {
             get

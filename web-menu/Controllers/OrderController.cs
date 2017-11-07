@@ -218,11 +218,29 @@ namespace web_menu.Controllers
 
         private void PopulateTableDropDownList()
         {
+            var orders = _context.Orders.ToList();
             var tables = _context.Tables
                 .AsNoTracking()
-                .Where(t => !t.IsEmpty)
-                .OrderBy(t => t.TableID);
+                .Where(t => !t.IsEmpty);
+            tables = tables.Where(t => !HasUnpaidOrder(t, orders.Where(o => o.TableID == t.TableID).ToList())); //don't open an order for a table until previous is paid
+            tables = tables.OrderBy(t => t.TableID);
             ViewBag.TableId = new SelectList(tables, "TableID", "TableID");
+        }
+
+        private bool HasUnpaidOrder(Table t, List<Order> orders)
+        {
+            if (orders == null)
+            {
+                return false;
+            }
+            foreach (Order o in orders)
+            {
+                if (!o.IsPaid)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

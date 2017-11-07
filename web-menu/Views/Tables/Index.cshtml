@@ -13,12 +13,18 @@
 <div id="_waiterrequests">
     @Html.Partial("_requests", Model)
 </div>
+@{ 
+    Dictionary<int, int> activeOrders = (Dictionary<int, int>)ViewData["Orders"];
+}
 <h2>Tables</h2>
 <table class="table">
     <thead>
         <tr>
             <th>
                 Table Number
+            </th>
+            <th>
+                Active Order
             </th>
             <th></th>
         </tr>
@@ -40,13 +46,24 @@
                     @Html.DisplayFor(modelItem => item.TableID)
                 </td>
                 <td>
+                    @if (activeOrders.ContainsKey(item.TableID))
+                    {
+                        @Html.DisplayFor(modelItem => activeOrders[item.TableID])
+                    }
+                </td>
+                <td>
                     @if (item.IsEmpty)
                 {
-                        <a asp-action="Seat" asp-route-id="@item.TableID">Seat Customer</a>
+                        <a asp-action="Seat" asp-route-id="@item.TableID">Seat Customer </a>
                     }
                     @if (!item.IsEmpty)
                 {
-                        <a asp-action="Available" asp-route-id="@item.TableID">Mark Available</a>
+                        <a asp-action="Available" asp-route-id="@item.TableID">Mark Available </a>
+                    }
+                    @if (activeOrders.ContainsKey(item.TableID))
+                    {
+                        <br/>
+                        <a asp-action="Paid" asp-route-id="@activeOrders[item.TableID]">Mark Paid</a>
                     }
                 </td>
             </tr>

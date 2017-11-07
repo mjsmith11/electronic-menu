@@ -29,6 +29,7 @@ namespace web_menu.Controllers
             TablesWithRequests model = new TablesWithRequests();
             model.Tables = await tables.ToListAsync();
             model.WaiterRequests = new List<WaiterRequest>();
+            ViewData["Orders"] = FindActiveOrders();
             return View(model);
         }
 
@@ -75,6 +76,25 @@ namespace web_menu.Controllers
 
         }
 
+        public async Task<IActionResult> Paid(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var orderToUpdate = await _context.Orders.SingleOrDefaultAsync(o => o.OrderID == id);
+            orderToUpdate.IsPaid = true;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError("", "Unable to update order.");
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
 
         [ResponseCache(NoStore = true, Location = ResponseCacheLocation.Client, Duration = 15)]
         public ActionResult Requests()
@@ -90,6 +110,19 @@ namespace web_menu.Controllers
             };
 
             return PartialView("_requests", model);
+        }
+
+        private Dictionary<int,int> FindActiveOrders()
+        {
+            Dictionary<int, int> result = new Dictionary<int, int>();
+            var unPaidOrders = _context.Orders
+                .Where(o => o.IsPaid == false); //since it is not allowed to open an order at a table with an unpaid order, this should have 0 or 1 order per table
+
+            foreach(var order in unPaidOrders)
+            {
+                result.Add(order.TableID, order.OrderID);
+            }
+            return result;
         }
     }
 }

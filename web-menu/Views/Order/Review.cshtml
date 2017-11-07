@@ -57,4 +57,8 @@
     </tbody>
 </table>
 
-<a asp-action="Index" asp-controller="Menu">Back to Menu</a>
+<form asp-action="PlaceOrder">
+    <input type="hidden" name="id" value="@Model.OrderID" />
+    <input type="submit" value="Place Order" class="btn btn-default" />
+</form>
+

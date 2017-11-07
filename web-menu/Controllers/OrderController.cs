@@ -179,6 +179,19 @@ namespace web_menu.Controllers
             }
         }
 
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> PlaceOrder(int id)
+        {
+            var order = await _context.Orders
+                .SingleOrDefaultAsync(o => o.OrderID == id);
+
+            order.IsPlaced = true;
+            await _context.SaveChangesAsync();
+
+            return View();
+
+        }
+
         private IActionResult RedirectToOrderOrMenu()
         {
             if (HttpContext.Session.TryGetValue("OrderID", out byte[] orderIdBytes))

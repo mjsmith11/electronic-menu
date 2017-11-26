@@ -29,41 +29,68 @@
         private void InitializeComponent()
         {
             this.pnlList = new System.Windows.Forms.Panel();
-            this.gvMenuItems = new System.Windows.Forms.DataGridView();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.gvMenuItems = new System.Windows.Forms.DataGridView();
             this.pnlItemDetail = new System.Windows.Forms.Panel();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.ddlCategory = new System.Windows.Forms.ComboBox();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.tbxTitle = new System.Windows.Forms.TextBox();
-            this.rtbDescription = new System.Windows.Forms.RichTextBox();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.tbxPrice = new System.Windows.Forms.MaskedTextBox();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.cbxDiscount = new System.Windows.Forms.CheckBox();
-            this.lblDiscount = new System.Windows.Forms.Label();
-            this.tbxDiscountPrice = new System.Windows.Forms.MaskedTextBox();
-            this.cbxAvailable = new System.Windows.Forms.CheckBox();
-            this.lblAvailable = new System.Windows.Forms.Label();
-            this.cbxSpecialty = new System.Windows.Forms.CheckBox();
             this.lblSpecialty = new System.Windows.Forms.Label();
+            this.cbxSpecialty = new System.Windows.Forms.CheckBox();
+            this.lblAvailable = new System.Windows.Forms.Label();
+            this.cbxAvailable = new System.Windows.Forms.CheckBox();
+            this.tbxDiscountPrice = new System.Windows.Forms.MaskedTextBox();
+            this.lblDiscount = new System.Windows.Forms.Label();
+            this.cbxDiscount = new System.Windows.Forms.CheckBox();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.tbxPrice = new System.Windows.Forms.MaskedTextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.rtbDescription = new System.Windows.Forms.RichTextBox();
+            this.tbxTitle = new System.Windows.Forms.TextBox();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.ddlCategory = new System.Windows.Forms.ComboBox();
+            this.lblCategory = new System.Windows.Forms.Label();
             this.pnlCreateButtons = new System.Windows.Forms.Panel();
-            this.btnCreateSave = new System.Windows.Forms.Button();
             this.btnCreateCancel = new System.Windows.Forms.Button();
+            this.btnCreateSave = new System.Windows.Forms.Button();
+            this.pnlDeleteButtons = new System.Windows.Forms.Panel();
+            this.lblConfirmDelete = new System.Windows.Forms.Label();
+            this.btnDeleteNo = new System.Windows.Forms.Button();
+            this.btnDeleteYes = new System.Windows.Forms.Button();
             this.pnlList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMenuItems)).BeginInit();
             this.pnlItemDetail.SuspendLayout();
             this.pnlCreateButtons.SuspendLayout();
+            this.pnlDeleteButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlList
             // 
+            this.pnlList.Controls.Add(this.btnDelete);
             this.pnlList.Controls.Add(this.btnCreate);
             this.pnlList.Controls.Add(this.gvMenuItems);
             this.pnlList.Location = new System.Drawing.Point(12, 12);
             this.pnlList.Name = "pnlList";
             this.pnlList.Size = new System.Drawing.Size(1257, 878);
             this.pnlList.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(791, 824);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(126, 42);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(327, 824);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(126, 42);
+            this.btnCreate.TabIndex = 1;
+            this.btnCreate.Text = "New";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // gvMenuItems
             // 
@@ -78,16 +105,6 @@
             this.gvMenuItems.RowTemplate.Height = 28;
             this.gvMenuItems.Size = new System.Drawing.Size(1250, 805);
             this.gvMenuItems.TabIndex = 0;
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.Location = new System.Drawing.Point(327, 824);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(126, 42);
-            this.btnCreate.TabIndex = 1;
-            this.btnCreate.Text = "New";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // pnlItemDetail
             // 
@@ -111,75 +128,58 @@
             this.pnlItemDetail.Size = new System.Drawing.Size(421, 299);
             this.pnlItemDetail.TabIndex = 2;
             // 
-            // lblCategory
+            // lblSpecialty
             // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(34, 3);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(73, 20);
-            this.lblCategory.TabIndex = 0;
-            this.lblCategory.Text = "Category";
+            this.lblSpecialty.AutoSize = true;
+            this.lblSpecialty.Location = new System.Drawing.Point(33, 260);
+            this.lblSpecialty.Name = "lblSpecialty";
+            this.lblSpecialty.Size = new System.Drawing.Size(73, 20);
+            this.lblSpecialty.TabIndex = 14;
+            this.lblSpecialty.Text = "Specialty";
             // 
-            // ddlCategory
+            // cbxSpecialty
             // 
-            this.ddlCategory.FormattingEnabled = true;
-            this.ddlCategory.Location = new System.Drawing.Point(113, 0);
-            this.ddlCategory.Name = "ddlCategory";
-            this.ddlCategory.Size = new System.Drawing.Size(291, 28);
-            this.ddlCategory.TabIndex = 1;
-            this.ddlCategory.TextChanged += new System.EventHandler(this.ddlCategory_TextChanged);
+            this.cbxSpecialty.AutoSize = true;
+            this.cbxSpecialty.Location = new System.Drawing.Point(113, 260);
+            this.cbxSpecialty.Name = "cbxSpecialty";
+            this.cbxSpecialty.Size = new System.Drawing.Size(22, 21);
+            this.cbxSpecialty.TabIndex = 13;
+            this.cbxSpecialty.UseVisualStyleBackColor = true;
             // 
-            // lblTitle
+            // lblAvailable
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(69, 37);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(38, 20);
-            this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "Title";
+            this.lblAvailable.AutoSize = true;
+            this.lblAvailable.Location = new System.Drawing.Point(34, 233);
+            this.lblAvailable.Name = "lblAvailable";
+            this.lblAvailable.Size = new System.Drawing.Size(72, 20);
+            this.lblAvailable.TabIndex = 12;
+            this.lblAvailable.Text = "Available";
             // 
-            // tbxTitle
+            // cbxAvailable
             // 
-            this.tbxTitle.Location = new System.Drawing.Point(113, 34);
-            this.tbxTitle.MaxLength = 50;
-            this.tbxTitle.Name = "tbxTitle";
-            this.tbxTitle.Size = new System.Drawing.Size(291, 26);
-            this.tbxTitle.TabIndex = 3;
+            this.cbxAvailable.AutoSize = true;
+            this.cbxAvailable.Location = new System.Drawing.Point(113, 233);
+            this.cbxAvailable.Name = "cbxAvailable";
+            this.cbxAvailable.Size = new System.Drawing.Size(22, 21);
+            this.cbxAvailable.TabIndex = 11;
+            this.cbxAvailable.UseVisualStyleBackColor = true;
             // 
-            // rtbDescription
+            // tbxDiscountPrice
             // 
-            this.rtbDescription.Location = new System.Drawing.Point(113, 68);
-            this.rtbDescription.MaxLength = 250;
-            this.rtbDescription.Name = "rtbDescription";
-            this.rtbDescription.Size = new System.Drawing.Size(291, 96);
-            this.rtbDescription.TabIndex = 4;
-            this.rtbDescription.Text = "";
+            this.tbxDiscountPrice.Location = new System.Drawing.Point(141, 202);
+            this.tbxDiscountPrice.Mask = "$990.00";
+            this.tbxDiscountPrice.Name = "tbxDiscountPrice";
+            this.tbxDiscountPrice.Size = new System.Drawing.Size(263, 26);
+            this.tbxDiscountPrice.TabIndex = 10;
             // 
-            // lblDescription
+            // lblDiscount
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(18, 68);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(89, 20);
-            this.lblDescription.TabIndex = 5;
-            this.lblDescription.Text = "Description";
-            // 
-            // tbxPrice
-            // 
-            this.tbxPrice.Location = new System.Drawing.Point(113, 170);
-            this.tbxPrice.Mask = "$990.00";
-            this.tbxPrice.Name = "tbxPrice";
-            this.tbxPrice.Size = new System.Drawing.Size(291, 26);
-            this.tbxPrice.TabIndex = 6;
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(63, 170);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(44, 20);
-            this.lblPrice.TabIndex = 7;
-            this.lblPrice.Text = "Price";
+            this.lblDiscount.AutoSize = true;
+            this.lblDiscount.Location = new System.Drawing.Point(18, 206);
+            this.lblDiscount.Name = "lblDiscount";
+            this.lblDiscount.Size = new System.Drawing.Size(90, 20);
+            this.lblDiscount.TabIndex = 9;
+            this.lblDiscount.Text = "Discounted";
             // 
             // cbxDiscount
             // 
@@ -191,58 +191,75 @@
             this.cbxDiscount.UseVisualStyleBackColor = true;
             this.cbxDiscount.CheckedChanged += new System.EventHandler(this.cbxDiscount_CheckedChanged);
             // 
-            // lblDiscount
+            // lblPrice
             // 
-            this.lblDiscount.AutoSize = true;
-            this.lblDiscount.Location = new System.Drawing.Point(18, 206);
-            this.lblDiscount.Name = "lblDiscount";
-            this.lblDiscount.Size = new System.Drawing.Size(90, 20);
-            this.lblDiscount.TabIndex = 9;
-            this.lblDiscount.Text = "Discounted";
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(63, 170);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(44, 20);
+            this.lblPrice.TabIndex = 7;
+            this.lblPrice.Text = "Price";
             // 
-            // tbxDiscountPrice
+            // tbxPrice
             // 
-            this.tbxDiscountPrice.Location = new System.Drawing.Point(141, 202);
-            this.tbxDiscountPrice.Mask = "$990.00";
-            this.tbxDiscountPrice.Name = "tbxDiscountPrice";
-            this.tbxDiscountPrice.Size = new System.Drawing.Size(263, 26);
-            this.tbxDiscountPrice.TabIndex = 10;
+            this.tbxPrice.Location = new System.Drawing.Point(113, 170);
+            this.tbxPrice.Mask = "$990.00";
+            this.tbxPrice.Name = "tbxPrice";
+            this.tbxPrice.Size = new System.Drawing.Size(291, 26);
+            this.tbxPrice.TabIndex = 6;
             // 
-            // cbxAvailable
+            // lblDescription
             // 
-            this.cbxAvailable.AutoSize = true;
-            this.cbxAvailable.Location = new System.Drawing.Point(113, 233);
-            this.cbxAvailable.Name = "cbxAvailable";
-            this.cbxAvailable.Size = new System.Drawing.Size(22, 21);
-            this.cbxAvailable.TabIndex = 11;
-            this.cbxAvailable.UseVisualStyleBackColor = true;
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(18, 68);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(89, 20);
+            this.lblDescription.TabIndex = 5;
+            this.lblDescription.Text = "Description";
             // 
-            // lblAvailable
+            // rtbDescription
             // 
-            this.lblAvailable.AutoSize = true;
-            this.lblAvailable.Location = new System.Drawing.Point(34, 233);
-            this.lblAvailable.Name = "lblAvailable";
-            this.lblAvailable.Size = new System.Drawing.Size(72, 20);
-            this.lblAvailable.TabIndex = 12;
-            this.lblAvailable.Text = "Available";
+            this.rtbDescription.Location = new System.Drawing.Point(113, 68);
+            this.rtbDescription.MaxLength = 250;
+            this.rtbDescription.Name = "rtbDescription";
+            this.rtbDescription.Size = new System.Drawing.Size(291, 96);
+            this.rtbDescription.TabIndex = 4;
+            this.rtbDescription.Text = "";
             // 
-            // cbxSpecialty
+            // tbxTitle
             // 
-            this.cbxSpecialty.AutoSize = true;
-            this.cbxSpecialty.Location = new System.Drawing.Point(113, 260);
-            this.cbxSpecialty.Name = "cbxSpecialty";
-            this.cbxSpecialty.Size = new System.Drawing.Size(22, 21);
-            this.cbxSpecialty.TabIndex = 13;
-            this.cbxSpecialty.UseVisualStyleBackColor = true;
+            this.tbxTitle.Location = new System.Drawing.Point(113, 34);
+            this.tbxTitle.MaxLength = 50;
+            this.tbxTitle.Name = "tbxTitle";
+            this.tbxTitle.Size = new System.Drawing.Size(291, 26);
+            this.tbxTitle.TabIndex = 3;
             // 
-            // lblSpecialty
+            // lblTitle
             // 
-            this.lblSpecialty.AutoSize = true;
-            this.lblSpecialty.Location = new System.Drawing.Point(33, 260);
-            this.lblSpecialty.Name = "lblSpecialty";
-            this.lblSpecialty.Size = new System.Drawing.Size(73, 20);
-            this.lblSpecialty.TabIndex = 14;
-            this.lblSpecialty.Text = "Specialty";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Location = new System.Drawing.Point(69, 37);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(38, 20);
+            this.lblTitle.TabIndex = 2;
+            this.lblTitle.Text = "Title";
+            // 
+            // ddlCategory
+            // 
+            this.ddlCategory.FormattingEnabled = true;
+            this.ddlCategory.Location = new System.Drawing.Point(113, 0);
+            this.ddlCategory.Name = "ddlCategory";
+            this.ddlCategory.Size = new System.Drawing.Size(291, 28);
+            this.ddlCategory.TabIndex = 1;
+            this.ddlCategory.TextChanged += new System.EventHandler(this.ddlCategory_TextChanged);
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Location = new System.Drawing.Point(34, 3);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(73, 20);
+            this.lblCategory.TabIndex = 0;
+            this.lblCategory.Text = "Category";
             // 
             // pnlCreateButtons
             // 
@@ -252,16 +269,6 @@
             this.pnlCreateButtons.Name = "pnlCreateButtons";
             this.pnlCreateButtons.Size = new System.Drawing.Size(419, 100);
             this.pnlCreateButtons.TabIndex = 2;
-            // 
-            // btnCreateSave
-            // 
-            this.btnCreateSave.Location = new System.Drawing.Point(83, 33);
-            this.btnCreateSave.Name = "btnCreateSave";
-            this.btnCreateSave.Size = new System.Drawing.Size(103, 41);
-            this.btnCreateSave.TabIndex = 0;
-            this.btnCreateSave.Text = "Save";
-            this.btnCreateSave.UseVisualStyleBackColor = true;
-            this.btnCreateSave.Click += new System.EventHandler(this.btnCreateSave_Click);
             // 
             // btnCreateCancel
             // 
@@ -273,11 +280,63 @@
             this.btnCreateCancel.UseVisualStyleBackColor = true;
             this.btnCreateCancel.Click += new System.EventHandler(this.btnCreateCancel_Click);
             // 
+            // btnCreateSave
+            // 
+            this.btnCreateSave.Location = new System.Drawing.Point(83, 33);
+            this.btnCreateSave.Name = "btnCreateSave";
+            this.btnCreateSave.Size = new System.Drawing.Size(103, 41);
+            this.btnCreateSave.TabIndex = 0;
+            this.btnCreateSave.Text = "Save";
+            this.btnCreateSave.UseVisualStyleBackColor = true;
+            this.btnCreateSave.Click += new System.EventHandler(this.btnCreateSave_Click);
+            // 
+            // pnlDeleteButtons
+            // 
+            this.pnlDeleteButtons.Controls.Add(this.lblConfirmDelete);
+            this.pnlDeleteButtons.Controls.Add(this.btnDeleteNo);
+            this.pnlDeleteButtons.Controls.Add(this.btnDeleteYes);
+            this.pnlDeleteButtons.Location = new System.Drawing.Point(13, 307);
+            this.pnlDeleteButtons.Name = "pnlDeleteButtons";
+            this.pnlDeleteButtons.Size = new System.Drawing.Size(419, 156);
+            this.pnlDeleteButtons.TabIndex = 3;
+            // 
+            // lblConfirmDelete
+            // 
+            this.lblConfirmDelete.AutoSize = true;
+            this.lblConfirmDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfirmDelete.Location = new System.Drawing.Point(80, 13);
+            this.lblConfirmDelete.Name = "lblConfirmDelete";
+            this.lblConfirmDelete.Size = new System.Drawing.Size(251, 50);
+            this.lblConfirmDelete.TabIndex = 2;
+            this.lblConfirmDelete.Text = "Are you sure you want to\r\ndelete this menu item?";
+            this.lblConfirmDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnDeleteNo
+            // 
+            this.btnDeleteNo.Location = new System.Drawing.Point(228, 84);
+            this.btnDeleteNo.Name = "btnDeleteNo";
+            this.btnDeleteNo.Size = new System.Drawing.Size(103, 41);
+            this.btnDeleteNo.TabIndex = 1;
+            this.btnDeleteNo.Text = "No";
+            this.btnDeleteNo.UseVisualStyleBackColor = true;
+            this.btnDeleteNo.Click += new System.EventHandler(this.btnDeleteNo_Click);
+            // 
+            // btnDeleteYes
+            // 
+            this.btnDeleteYes.Location = new System.Drawing.Point(82, 84);
+            this.btnDeleteYes.Name = "btnDeleteYes";
+            this.btnDeleteYes.Size = new System.Drawing.Size(103, 41);
+            this.btnDeleteYes.TabIndex = 0;
+            this.btnDeleteYes.Text = "Yes";
+            this.btnDeleteYes.UseVisualStyleBackColor = true;
+            this.btnDeleteYes.Click += new System.EventHandler(this.btnDeleteYes_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1281, 902);
+            this.Controls.Add(this.pnlDeleteButtons);
             this.Controls.Add(this.pnlCreateButtons);
             this.Controls.Add(this.pnlItemDetail);
             this.Controls.Add(this.pnlList);
@@ -288,6 +347,8 @@
             this.pnlItemDetail.ResumeLayout(false);
             this.pnlItemDetail.PerformLayout();
             this.pnlCreateButtons.ResumeLayout(false);
+            this.pnlDeleteButtons.ResumeLayout(false);
+            this.pnlDeleteButtons.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,5 +377,10 @@
         private System.Windows.Forms.Panel pnlCreateButtons;
         private System.Windows.Forms.Button btnCreateCancel;
         private System.Windows.Forms.Button btnCreateSave;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Panel pnlDeleteButtons;
+        private System.Windows.Forms.Label lblConfirmDelete;
+        private System.Windows.Forms.Button btnDeleteNo;
+        private System.Windows.Forms.Button btnDeleteYes;
     }
 }

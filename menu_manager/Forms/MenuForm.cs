@@ -16,14 +16,14 @@ namespace menu_manager.Forms
     public partial class MenuForm : Form
     {
         public NetFrameworkMenuContext _context { get; }
+        private int? activeID;
         public MenuForm(NetFrameworkMenuContext context)
         {
             InitializeComponent();
             _context = context;
             setupListColumns();
             loadMenuData();
-            pnlItemDetail.Hide();
-            pnlCreateButtons.Hide();
+            showMenuList();
 
         }
 
@@ -108,12 +108,14 @@ namespace menu_manager.Forms
             cbxSpecialty.Checked = false;
 
             tbxDiscountPrice.ReadOnly = true;
-            enablePrice();
+            enableAllDetailsControls();
         }
 
         private void showMenuList()
         {
+            activeID = null;
             pnlCreateButtons.Hide();
+            pnlDeleteButtons.Hide();
             pnlItemDetail.Hide();
 
             pnlList.Show();
@@ -141,26 +143,26 @@ namespace menu_manager.Forms
 
         private string validateAllControls()
         {
-            if(ddlCategory.Text == "")
+            if (ddlCategory.Text == "")
             {
                 return "Category cannot be blank.";
             }
-            if(tbxTitle.Text == "")
+            if (tbxTitle.Text == "")
             {
                 return "Title cannot be blank.";
             }
-            if(ddlCategory.Text != "Sides")
+            if (ddlCategory.Text != "Sides")
             {
                 double price;
                 try
                 {
                     price = Double.Parse(tbxPrice.Text.Substring(1));
                 }
-                catch(FormatException)
+                catch (FormatException)
                 {
                     return "Price format is not correct.";
                 }
-                if (price<0.01)
+                if (price < 0.01)
                 {
                     return "Price cannot be 0";
                 }
@@ -179,7 +181,7 @@ namespace menu_manager.Forms
                     {
                         return "Discount Price cannot be 0";
                     }
-                    if (discountPrice>=price)
+                    if (discountPrice >= price)
                     {
                         return "Discount price must be less than the regular price.";
                     }
@@ -196,7 +198,7 @@ namespace menu_manager.Forms
             obj.Title = tbxTitle.Text;
             obj.Description = rtbDescription.Text;
             obj.Price = (decimal)Double.Parse(tbxPrice.Text.Substring(1));
-            if(cbxDiscount.Checked)
+            if (cbxDiscount.Checked)
             {
                 obj.DiscountPrice = (decimal)Double.Parse(tbxDiscountPrice.Text.Substring(1));
             }
@@ -206,6 +208,73 @@ namespace menu_manager.Forms
             }
             obj.IsAvailable = cbxAvailable.Checked;
             obj.IsSpecialty = cbxSpecialty.Checked;
+        }
+
+        private void disableAllDetailsControls()
+        {
+            ddlCategory.Enabled = false;
+            tbxTitle.ReadOnly = true;
+            rtbDescription.ReadOnly = true;
+            tbxPrice.ReadOnly = true;
+            cbxDiscount.Enabled = false;
+            tbxDiscountPrice.ReadOnly = true;
+            cbxAvailable.Enabled = false;
+            cbxSpecialty.Enabled = false;
+        }
+
+        private void enableAllDetailsControls()
+        {
+            ddlCategory.Enabled = true;
+            tbxTitle.ReadOnly = false;
+            rtbDescription.ReadOnly = false;
+            tbxPrice.ReadOnly = false;
+            cbxDiscount.Enabled = true;
+            tbxDiscountPrice.ReadOnly = false;
+            cbxAvailable.Enabled = true;
+            cbxSpecialty.Enabled = true;
+
+            // depending on some form values we may actually want some stuff disabled
+            cbxDiscount_CheckedChanged(null, null);
+            ddlCategory_TextChanged(null, null);
+        }
+
+        private void loadListRowIntoDetails(int RowIndex)
+        {
+            DataGridViewRow row = gvMenuItems.Rows[RowIndex];
+            activeID = int.Parse(row.Cells[0].Value.ToString());
+            data_models.Models.MenuItem m = MenuItemController.GetOneById(_context,(int)activeID);
+            ddlCategory.Text = m.Category;
+            tbxTitle.Text = m.Title;
+            if (m.Description != null)
+                rtbDescription.Text = m.Description;
+            if (m.Price != null)
+                tbxPrice.Text = toPaddedString((decimal)m.Price);
+            if (m.DiscountPrice == null)
+            {
+                cbxDiscount.Checked = false;
+            }
+            else
+            {
+                cbxDiscount.Checked = true;
+                tbxDiscountPrice.Text = toPaddedString((decimal)m.DiscountPrice);
+            }
+
+            cbxAvailable.Checked = m.IsAvailable;
+            cbxSpecialty.Checked = m.IsSpecialty;
+        }
+
+        //convert a decimal to string with 3 characters right of the decimal and two right
+        private String toPaddedString(decimal d)
+        {
+            if(d < 10)
+            {
+                return "  " + d.ToString();
+            }
+            if(d < 100)
+            {
+                return " " + d.ToString();
+            }
+            return d.ToString();
         }
 
         private void cbxDiscount_CheckedChanged(object sender, EventArgs e)
@@ -263,6 +332,29 @@ namespace menu_manager.Forms
             {
                 MessageBox.Show(error, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            clearDetails();
+            int index = gvMenuItems.SelectedCells[0].RowIndex;
+            loadListRowIntoDetails(index);
+            disableAllDetailsControls();
+            pnlList.Hide();
+            pnlItemDetail.Show();
+            pnlDeleteButtons.Show();
+        }
+
+        private void btnDeleteNo_Click(object sender, EventArgs e)
+        {
+            showMenuList();
+        }
+
+        private void btnDeleteYes_Click(object sender, EventArgs e)
+        {
+            MenuItemController.DeleteItemById(_context, (int)activeID);
+            loadMenuData();
+            showMenuList();
         }
     }
 }

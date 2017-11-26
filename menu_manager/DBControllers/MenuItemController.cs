@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using data_models;
 using data_models.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace menu_manager.DBControllers
 {
@@ -16,6 +17,13 @@ namespace menu_manager.DBControllers
                 .AsNoTracking()
                 .OrderBy(mi => mi.Category)
                 .ToList();
+        }
+
+        public static MenuItem GetOneById(NetFrameworkMenuContext context, int id)
+        {
+            return context.MenuItems
+                .AsNoTracking().
+                Single(m => m.MenuItemID == id);
         }
 
         public static List<String> GetCategories(NetFrameworkMenuContext context)
@@ -31,6 +39,26 @@ namespace menu_manager.DBControllers
         {
             context.MenuItems.Add(m);
             context.SaveChanges();
+        }
+
+        public static bool DeleteItemById(NetFrameworkMenuContext context, int id)
+        {
+            var menuItem = context.MenuItems
+                .SingleOrDefault(m => m.MenuItemID == id);
+
+            if (menuItem == null)
+                return false;
+
+            try
+            {
+                context.MenuItems.Remove(menuItem);
+                context.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
         }
     }
 }

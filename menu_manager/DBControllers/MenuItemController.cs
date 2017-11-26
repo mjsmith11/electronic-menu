@@ -13,8 +13,24 @@ namespace menu_manager.DBControllers
         public static List<MenuItem> GetItemsSortByCategory(NetFrameworkMenuContext context)
         {
             return context.MenuItems
+                .AsNoTracking()
                 .OrderBy(mi => mi.Category)
                 .ToList();
+        }
+
+        public static List<String> GetCategories(NetFrameworkMenuContext context)
+        {
+            return context.MenuItems
+                .AsNoTracking()
+                .Select(m => m.Category)
+                .Distinct()
+                .ToList();
+        }
+
+        public static void CreateItem(NetFrameworkMenuContext context, MenuItem m)
+        {
+            context.MenuItems.Add(m);
+            context.SaveChanges();
         }
     }
 }

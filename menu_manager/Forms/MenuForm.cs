@@ -22,13 +22,15 @@ namespace menu_manager.Forms
             _context = context;
             setupListColumns();
             loadMenuData();
+            pnlItemDetail.Hide();
+            pnlCreateButtons.Hide();
 
         }
 
         private void loadMenuData()
         {
             List<data_models.Models.MenuItem> menuItems = MenuItemController.GetItemsSortByCategory(_context);
-            gvMenuItems.DataSource = menuItems;;
+            gvMenuItems.DataSource = menuItems;
         }
 
         private void setupListColumns()
@@ -87,5 +89,180 @@ namespace menu_manager.Forms
 
         }
 
+
+        private void populateCategoriesDropDown()
+        {
+            List<String> categories = MenuItemController.GetCategories(_context);
+            ddlCategory.DataSource = categories;
+        }
+
+        private void clearDetails()
+        {
+            tbxTitle.Text = "";
+            rtbDescription.Text = "";
+            tbxPrice.Text = "";
+            cbxDiscount.Checked = false;
+            tbxDiscountPrice.Text = "";
+            ddlCategory.Text = "";
+            cbxAvailable.Checked = true; //Default to available
+            cbxSpecialty.Checked = false;
+
+            tbxDiscountPrice.ReadOnly = true;
+            enablePrice();
+        }
+
+        private void showMenuList()
+        {
+            pnlCreateButtons.Hide();
+            pnlItemDetail.Hide();
+
+            pnlList.Show();
+        }
+
+        private void disablePrice()
+        {
+            tbxPrice.ReadOnly = true;
+            tbxPrice.Text = "";
+            cbxDiscount.Checked = false;
+            cbxDiscount.Enabled = false;
+            tbxDiscountPrice.ReadOnly = true;
+            tbxPrice.Text = "";
+        }
+
+        private void enablePrice()
+        {
+            tbxPrice.ReadOnly = false;
+            if (cbxDiscount.Checked)
+                tbxDiscountPrice.ReadOnly = false;
+            else
+                tbxDiscountPrice.ReadOnly = true;
+            cbxDiscount.Enabled = true;
+        }
+
+        private string validateAllControls()
+        {
+            if(ddlCategory.Text == "")
+            {
+                return "Category cannot be blank.";
+            }
+            if(tbxTitle.Text == "")
+            {
+                return "Title cannot be blank.";
+            }
+            if(ddlCategory.Text != "Sides")
+            {
+                double price;
+                try
+                {
+                    price = Double.Parse(tbxPrice.Text.Substring(1));
+                }
+                catch(FormatException)
+                {
+                    return "Price format is not correct.";
+                }
+                if (price<0.01)
+                {
+                    return "Price cannot be 0";
+                }
+                if (cbxDiscount.Checked)
+                {
+                    double discountPrice;
+                    try
+                    {
+                        discountPrice = Double.Parse(tbxDiscountPrice.Text.Substring(1));
+                    }
+                    catch (FormatException)
+                    {
+                        return "Discount Price format is not correct.";
+                    }
+                    if (discountPrice < 0.01)
+                    {
+                        return "Discount Price cannot be 0";
+                    }
+                    if (discountPrice>=price)
+                    {
+                        return "Discount price must be less than the regular price.";
+                    }
+                }
+            }
+
+
+            return "";
+        }
+
+        private void updateObjectFromForm(ref data_models.Models.MenuItem obj)
+        {
+            obj.Category = ddlCategory.Text;
+            obj.Title = tbxTitle.Text;
+            obj.Description = rtbDescription.Text;
+            obj.Price = (decimal)Double.Parse(tbxPrice.Text.Substring(1));
+            if(cbxDiscount.Checked)
+            {
+                obj.DiscountPrice = (decimal)Double.Parse(tbxDiscountPrice.Text.Substring(1));
+            }
+            else
+            {
+                obj.DiscountPrice = null;
+            }
+            obj.IsAvailable = cbxAvailable.Checked;
+            obj.IsSpecialty = cbxSpecialty.Checked;
+        }
+
+        private void cbxDiscount_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxDiscount.Checked)
+            {
+                tbxDiscountPrice.ReadOnly = false;
+            }
+            else
+            {
+                tbxDiscountPrice.ReadOnly = true;
+                tbxDiscountPrice.Text = "";
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            populateCategoriesDropDown();
+            clearDetails();
+            pnlList.Hide();
+            pnlItemDetail.Show();
+            pnlCreateButtons.Show();
+        }
+
+        private void btnCreateCancel_Click(object sender, EventArgs e)
+        {
+            showMenuList();
+        }
+
+        private void ddlCategory_TextChanged(object sender, EventArgs e)
+        {
+            if(ddlCategory.Text=="Sides")
+            {
+                disablePrice();
+            }
+            else
+            {
+                enablePrice();
+            }
+        }
+
+        private void btnCreateSave_Click(object sender, EventArgs e)
+        {
+            String error = validateAllControls();
+            if(error == "")
+            {
+                data_models.Models.MenuItem m = new data_models.Models.MenuItem();
+                updateObjectFromForm(ref m);
+                MenuItemController.CreateItem(_context, m);
+                loadMenuData();
+                showMenuList();
+                
+            }
+            else
+            {
+                MessageBox.Show(error, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

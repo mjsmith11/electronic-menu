@@ -60,5 +60,23 @@ namespace menu_manager.DBControllers
                 return false;
             }
         }
+
+        public static void UpdateItemByObject(NetFrameworkMenuContext context, int id, MenuItem obj)
+        {
+            var itemToUpdate = context.MenuItems
+                .SingleOrDefault(m => m.MenuItemID == id);
+
+            itemToUpdate.Category = obj.Category;
+            itemToUpdate.Description = obj.Description;
+            itemToUpdate.DiscountPrice = obj.DiscountPrice;
+            itemToUpdate.IsAvailable = obj.IsAvailable;
+            itemToUpdate.IsSpecialty = obj.IsSpecialty;
+            itemToUpdate.Price = obj.Price;
+            itemToUpdate.Title = obj.Title;
+
+            context.SaveChanges();
+        }
+
+
     }
 }

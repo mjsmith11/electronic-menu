@@ -116,6 +116,7 @@ namespace menu_manager.Forms
             activeID = null;
             pnlCreateButtons.Hide();
             pnlDeleteButtons.Hide();
+            pnlUpdateButtons.Hide();
             pnlItemDetail.Hide();
 
             pnlList.Show();
@@ -355,6 +356,41 @@ namespace menu_manager.Forms
             MenuItemController.DeleteItemById(_context, (int)activeID);
             loadMenuData();
             showMenuList();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            clearDetails();
+            int index = gvMenuItems.SelectedCells[0].RowIndex;
+            populateCategoriesDropDown();
+            loadListRowIntoDetails(index);
+            enableAllDetailsControls();
+            pnlList.Hide();
+            pnlItemDetail.Show();
+            pnlUpdateButtons.Show();
+        }
+
+        private void btnUpdateCancel_Click(object sender, EventArgs e)
+        {
+            showMenuList();
+        }
+
+        private void btnUpdateSave_Click(object sender, EventArgs e)
+        {
+            String error = validateAllControls();
+            if (error == "")
+            {
+                data_models.Models.MenuItem m = new data_models.Models.MenuItem();
+                updateObjectFromForm(ref m);
+                MenuItemController.UpdateItemByObject(_context,(int)activeID,m);
+                loadMenuData();
+                showMenuList();
+
+            }
+            else
+            {
+                MessageBox.Show(error, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

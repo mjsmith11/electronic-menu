@@ -55,15 +55,21 @@
             this.lblConfirmDelete = new System.Windows.Forms.Label();
             this.btnDeleteNo = new System.Windows.Forms.Button();
             this.btnDeleteYes = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.pnlUpdateButtons = new System.Windows.Forms.Panel();
+            this.btnUpdateCancel = new System.Windows.Forms.Button();
+            this.btnUpdateSave = new System.Windows.Forms.Button();
             this.pnlList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMenuItems)).BeginInit();
             this.pnlItemDetail.SuspendLayout();
             this.pnlCreateButtons.SuspendLayout();
             this.pnlDeleteButtons.SuspendLayout();
+            this.pnlUpdateButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlList
             // 
+            this.pnlList.Controls.Add(this.btnUpdate);
             this.pnlList.Controls.Add(this.btnDelete);
             this.pnlList.Controls.Add(this.btnCreate);
             this.pnlList.Controls.Add(this.gvMenuItems);
@@ -74,7 +80,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(791, 824);
+            this.btnDelete.Location = new System.Drawing.Point(695, 824);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(126, 42);
             this.btnDelete.TabIndex = 2;
@@ -84,7 +90,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(327, 824);
+            this.btnCreate.Location = new System.Drawing.Point(431, 824);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(126, 42);
             this.btnCreate.TabIndex = 1;
@@ -272,7 +278,7 @@
             // 
             // btnCreateCancel
             // 
-            this.btnCreateCancel.Location = new System.Drawing.Point(229, 33);
+            this.btnCreateCancel.Location = new System.Drawing.Point(214, 33);
             this.btnCreateCancel.Name = "btnCreateCancel";
             this.btnCreateCancel.Size = new System.Drawing.Size(103, 41);
             this.btnCreateCancel.TabIndex = 1;
@@ -282,7 +288,7 @@
             // 
             // btnCreateSave
             // 
-            this.btnCreateSave.Location = new System.Drawing.Point(83, 33);
+            this.btnCreateSave.Location = new System.Drawing.Point(105, 33);
             this.btnCreateSave.Name = "btnCreateSave";
             this.btnCreateSave.Size = new System.Drawing.Size(103, 41);
             this.btnCreateSave.TabIndex = 0;
@@ -313,7 +319,7 @@
             // 
             // btnDeleteNo
             // 
-            this.btnDeleteNo.Location = new System.Drawing.Point(228, 84);
+            this.btnDeleteNo.Location = new System.Drawing.Point(213, 84);
             this.btnDeleteNo.Name = "btnDeleteNo";
             this.btnDeleteNo.Size = new System.Drawing.Size(103, 41);
             this.btnDeleteNo.TabIndex = 1;
@@ -323,7 +329,7 @@
             // 
             // btnDeleteYes
             // 
-            this.btnDeleteYes.Location = new System.Drawing.Point(82, 84);
+            this.btnDeleteYes.Location = new System.Drawing.Point(104, 84);
             this.btnDeleteYes.Name = "btnDeleteYes";
             this.btnDeleteYes.Size = new System.Drawing.Size(103, 41);
             this.btnDeleteYes.TabIndex = 0;
@@ -331,15 +337,55 @@
             this.btnDeleteYes.UseVisualStyleBackColor = true;
             this.btnDeleteYes.Click += new System.EventHandler(this.btnDeleteYes_Click);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(563, 824);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(126, 42);
+            this.btnUpdate.TabIndex = 3;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // pnlUpdateButtons
+            // 
+            this.pnlUpdateButtons.Controls.Add(this.btnUpdateCancel);
+            this.pnlUpdateButtons.Controls.Add(this.btnUpdateSave);
+            this.pnlUpdateButtons.Location = new System.Drawing.Point(12, 313);
+            this.pnlUpdateButtons.Name = "pnlUpdateButtons";
+            this.pnlUpdateButtons.Size = new System.Drawing.Size(419, 100);
+            this.pnlUpdateButtons.TabIndex = 4;
+            // 
+            // btnUpdateCancel
+            // 
+            this.btnUpdateCancel.Location = new System.Drawing.Point(214, 31);
+            this.btnUpdateCancel.Name = "btnUpdateCancel";
+            this.btnUpdateCancel.Size = new System.Drawing.Size(103, 41);
+            this.btnUpdateCancel.TabIndex = 1;
+            this.btnUpdateCancel.Text = "Cancel";
+            this.btnUpdateCancel.UseVisualStyleBackColor = true;
+            this.btnUpdateCancel.Click += new System.EventHandler(this.btnUpdateCancel_Click);
+            // 
+            // btnUpdateSave
+            // 
+            this.btnUpdateSave.Location = new System.Drawing.Point(105, 31);
+            this.btnUpdateSave.Name = "btnUpdateSave";
+            this.btnUpdateSave.Size = new System.Drawing.Size(103, 41);
+            this.btnUpdateSave.TabIndex = 0;
+            this.btnUpdateSave.Text = "Save";
+            this.btnUpdateSave.UseVisualStyleBackColor = true;
+            this.btnUpdateSave.Click += new System.EventHandler(this.btnUpdateSave_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1281, 902);
-            this.Controls.Add(this.pnlDeleteButtons);
-            this.Controls.Add(this.pnlCreateButtons);
             this.Controls.Add(this.pnlItemDetail);
+            this.Controls.Add(this.pnlDeleteButtons);
             this.Controls.Add(this.pnlList);
+            this.Controls.Add(this.pnlUpdateButtons);
+            this.Controls.Add(this.pnlCreateButtons);
             this.Name = "MenuForm";
             this.Text = "Menu Manager";
             this.pnlList.ResumeLayout(false);
@@ -349,6 +395,7 @@
             this.pnlCreateButtons.ResumeLayout(false);
             this.pnlDeleteButtons.ResumeLayout(false);
             this.pnlDeleteButtons.PerformLayout();
+            this.pnlUpdateButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -382,5 +429,9 @@
         private System.Windows.Forms.Label lblConfirmDelete;
         private System.Windows.Forms.Button btnDeleteNo;
         private System.Windows.Forms.Button btnDeleteYes;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Panel pnlUpdateButtons;
+        private System.Windows.Forms.Button btnUpdateCancel;
+        private System.Windows.Forms.Button btnUpdateSave;
     }
 }

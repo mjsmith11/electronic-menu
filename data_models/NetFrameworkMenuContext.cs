@@ -25,6 +25,8 @@ namespace data_models
         {
             modelBuilder.Entity<Table>().ToTable("Table");
             modelBuilder.Entity<MenuItem>().ToTable("MenuItem");
+            modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<OrderItem>().ToTable("OrderItem");
         }
 
         public static NetFrameworkMenuContext GetContext()

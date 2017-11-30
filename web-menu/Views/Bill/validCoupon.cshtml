@@ -1,0 +1,32 @@
+﻿@model data_models.Models.Coupon
+@{
+    ViewData["Title"] = "validCoupon";
+}
+<script type="text/javascript">
+    function backReport() {
+        window.location.href = "/Bill";
+
+    }
+</script>
+
+<h2> @(((string)ViewData["valid"]).ToString())</h2>
+@if ((string)ViewData["valid"] == "This Coupon can be used") {
+<h4>Coupon Informations: </h4>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Coupon Number:</dt>
+        <dd>@Html.DisplayFor(o => Model.CouponNumber)</dd>
+        <dt>Discount price:</dt>
+        <dd>@Html.DisplayFor(o => Model.DiscountPrice)</dd>
+        <dt>Start Date</dt>
+        <dd>@Html.DisplayFor(o => Model.StartDate)</dd>
+        <dt>End Date:</dt>
+        <dd>@Html.DisplayFor(o => Model.EndDate)</dd>
+    </dl><br />
+    <form asp-action="Discount" method="post">
+        <input type="hidden" name="id" value="@Model.CouponNumber" />
+        <input type="submit" value="Using this Coupon" class="btn btn-default" /> |
+    </form>
+</div>
+}
+<p class="text-right"><a onclick="backReport()" class="btn btn-primary">Go Back</a></p>

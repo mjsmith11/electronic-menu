@@ -16,6 +16,8 @@ namespace data_models
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<paymentInfor> paymentInfors { get; set; }
+        public DbSet<Coupon> Coupons { get; set; }
 
         public NetFrameworkMenuContext(DbConnection existingConnection, bool contextOwnsConnection) : base(existingConnection, contextOwnsConnection)
         {

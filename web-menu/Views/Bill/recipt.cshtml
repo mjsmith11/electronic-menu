@@ -1,0 +1,32 @@
+﻿@model data_models.Models.paymentInfor
+@{
+    ViewData["Title"] = @Html.DisplayFor(o => Model.OrderID);
+}
+<script type="text/javascript">
+    function backReport() {
+        window.location.href = "/Home/Index";
+
+    }
+</script>
+<h2>Payment Success, Thank You !</h2>
+<h3>Having a Wonderful Day</h3><br /><br />
+<h4>Payment Informations: </h4>
+<dl class="dl-horizontal">
+    <dt>Order Number:</dt>
+    <dd>@Html.DisplayFor(o => Model.OrderID)</dd>
+    <dt>Total Price:</dt>
+    <dd>@Html.DisplayFor(o => Model.TotalPrice)</dd>
+    <dt>Tips:</dt>
+    <dd>@Html.DisplayFor(o => Model.Tips)</dd>
+    <dt>Total Paid:</dt>
+    <dd>@(((double)ViewData["Totalpaid"]).ToString("C"))</dd>
+    <dt>Payment Method:</dt>
+    <dd>@Html.DisplayFor(o => Model.PaymentMethod)</dd>
+    <dt>Payment Card No:</dt>
+    <dd>@(((string)ViewData["CardNumber"]))</dd>
+    <dt>Customer:</dt>
+    <dd>@Html.DisplayFor(o => Model.CustomerName)</dd>
+</dl><br />
+<p class="text-right">
+    <a onclick="backReport()">Back to Home Page</a>
+</p> 

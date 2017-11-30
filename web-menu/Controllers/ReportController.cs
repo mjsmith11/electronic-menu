@@ -26,7 +26,7 @@ namespace web_menu.Controllers
                 .ThenInclude(oi => oi.MenuItem);
 
             double total = 0;
-            foreach(var order in paidOrders)
+            foreach (var order in paidOrders)
             {
                 foreach (var item in order.OrderItems)
                     total += (double)item.ExtendedPrice;
@@ -34,5 +34,16 @@ namespace web_menu.Controllers
             ViewData["TotalSales"] = total;
             return View();
         }
+        public async Task<IActionResult> History()
+        {
+
+            var order = await _context.paymentInfors
+                .AsNoTracking()
+                .ToListAsync();
+
+            return View(order);
+        }
+
+
     }
 }

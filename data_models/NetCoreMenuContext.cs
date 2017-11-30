@@ -13,6 +13,8 @@ namespace data_models
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<paymentInfor> paymentInfors { get; set; }
+        public DbSet<Coupon> Coupons { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,6 +22,8 @@ namespace data_models
             modelBuilder.Entity<MenuItem>().ToTable("MenuItem");
             modelBuilder.Entity<Order>().ToTable("Order");
             modelBuilder.Entity<OrderItem>().ToTable("OrderItem");
+            modelBuilder.Entity<paymentInfor>().ToTable("paymentInfor");
+            modelBuilder.Entity<Coupon>().ToTable("Coupon");
         }
     }
 }

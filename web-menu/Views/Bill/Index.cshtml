@@ -1,6 +1,6 @@
 ﻿@model data_models.Models.Order
 @section headscripts{
-<script type="text/javascript">
+    <script type="text/javascript">
     function split() {
         var splitters = document.getElementById("ways").value;
         var total = @((double)ViewData["Total"]);
@@ -8,7 +8,29 @@
         costEach = costEach.toFixed(2);
         document.getElementById("AmountEach").value = "$" + costEach;
     }
-</script>
+
+    function callwaiter() {
+        window.location.href = "Menu/CallWaiter";
+
+    }
+
+    window.onload = function () {
+        $("#payCradInfor").hide();
+        $("#div1").hide();
+        if ( @((bool)ViewData["Orderid"]) == true) {
+            document.getElementById("payBill").className = "btn btn-primary btn-lg text-right disabled";
+        }
+    }
+
+    $(document).ready(function () {
+        $("#inputInforCard").click(function () {
+            $("#payCradInfor").show();
+        });
+        $("#useCoupon").click(function () {
+            $("#div1").fadeToggle();
+        });
+    });
+    </script>
 }
 @{
     ViewData["Title"] = "Bill";
@@ -69,19 +91,123 @@
 </table>
 
 <h2>Split The Bill</h2>
+
 <div class="row">
     <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">How Many Ways</label>
-                <input class="form-control" id="ways" type="number" min="1" value="1" />
+        <div class="form-group">
+            <label class="control-label">How Many Ways</label>
+            <input class="form-control" id="ways" type="number" min="1" value="1" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Amount Each</label>
+            <input class="form-control" id="AmountEach" type="text" readonly />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-lg" onclick="split()">Split</button>
+            <a id="payBill" class="btn btn-primary btn-lg text-right" data-toggle="modal" data-target="#myModal">
+                Pay for Bill
+            </a><br /><br />
+            <a id="useCoupon">If you have Coupon, Please Click Here.</a>
+            <div id="div1">
+                <br />
+                <form asp-action="validCoupon">
+                    <label for="Coupon">Coupon No:</label><br />
+                    <input name="Coupon" type="number" class="form-control" placeholder="Please Input the Valid Coupon, Not Acceptable Expired One ">
+                    <br /> <input type="submit" value="Using Coupon" class="btn btn-primary" />
+                </form>
             </div>
-            <div class="form-group">
-                <label class="control-label">Amount Each</label>
-                <input class="form-control" id="AmountEach" type="text" readonly />
-            </div>
-            <div class="form-group">
-                <button class="btn btn-default" onclick="split()">Split</button>
+
+            <!--(Modal) -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                Please Select Payment Method
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" onclick="callwaiter()" class="btn btn-primary btn-lg btn-block">Pay for Cash</button><br />
+
+                            <button type="button" class="btn btn-primary btn-lg btn-block" id="inputInforCard">Pay for Card</button>
+
+                            <form asp-action="recipt">
+                                <div id="payCradInfor">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="paymentMethod" id="optionsRadios1" value="VISA" checked> VISA
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="paymentMethod" id="optionsRadios2" value="Master Card"> Master Card
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="paymentMethod" id="optionsRadios3" value="American Experess"> American Experess
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="paymentMethod" id="optionsRadios4" value="Discover"> Discover
+                                    </label><br />
+                                    <label for="cardNumber">Card Number:</label>
+                                    <input name="cardnumber" type="text" class="form-control" placeholder="Please input the card number"><br />
+                                    <label for="expirationData">Expiration Data:</label>
+                                    <select name="Month">
+                                        <option Value="01">January</option>
+                                        <option Value="02">February</option>
+                                        <option Value="03">March</option>
+                                        <option Value="04">April</option>
+                                        <option Value="05">March</option>
+                                        <option Value="06">June</option>
+                                        <option Value="07">July</option>
+                                        <option Value="08">August</option>
+                                        <option Value="09">September</option>
+                                        <option Value="10">October</option>
+                                        <option Value="11">November</option>
+                                        <option Value="12">December</option>
+                                    </select>
+                                    <select name="Year">
+                                        <option Value="2017">2017</option>
+                                        <option Value="2018">2018</option>
+                                        <option Value="2019">2019</option>
+                                        <option Value="2020">2020</option>
+                                        <option Value="2021">2021</option>
+                                        <option Value="2022">2022</option>
+                                        <option Value="2023">2023</option>
+                                        <option Value="2024">2024</option>
+                                        <option Value="2025">2025</option>
+                                        <option Value="2026">2026</option>
+                                        <option Value="2027">2027</option>
+                                        <option Value="2028">2028</option>
+                                    </select><br />
+                                    <label for="CVV">CVV2 Security Code:</label>
+                                    <input type="text" class="form-control" placeholder="3-Digits">
+                                    <label for="holder">Card Holder:</label>
+                                    <input name="CustomerName" type="text" class="form-control" placeholder="Please input you full name">
+                                    <label for="email">Email Address:</label>
+                                    <input name="email" type="text" class="form-control" placeholder="Please input your E-amil"><br />
+                                    <label for="tips">Tips:</label>
+                                    <input name="tips" type="number" class="form-control" placeholder="Tips for Waiter"><br />
+
+                                    <input type="hidden" name="totalprice" value="@(((double)ViewData["Total"]))" />
+                                    <input type="hidden" name="id" value="@Model.OrderID" />
+                                    <input type="hidden" name="table" value="@Model.TableID" />
+                                    <input type="submit" value="Submit" class="btn btn-default" />
+                                    <br />
+
+                                </div><br />
+                            </form>
+
+                            <button type="button" class="btn btn-primary btn-lg btn-block">Using PayPal</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
             </div>
         </div>
     </div>
+</div>
 

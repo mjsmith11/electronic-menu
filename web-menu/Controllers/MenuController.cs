@@ -69,6 +69,7 @@ namespace web_menu.Controllers
         {
             switch(category)
             {
+
                 case "Appetizers": return 1;
                 case "Steaks": return 2;
                 case "Chops and Chicken": return 3;

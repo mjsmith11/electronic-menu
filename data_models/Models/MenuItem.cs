@@ -26,6 +26,7 @@ namespace data_models.Models
         [Required]
         public bool IsAvailable { get; set; }
         public bool IsSpecialty { get; set; }
+        public string Image { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; }
     }

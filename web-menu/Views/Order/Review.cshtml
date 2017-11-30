@@ -19,6 +19,9 @@
             <th>
                 Extended Price
             </th>
+            <th>
+                Comment
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -37,6 +40,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ExtendedPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
                 </td>
                 <td>
                     <a asp-action="DeleteItem" asp-route-id="@item.OrderItemID">Remove</a>

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+# Blend for Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web_menu", "web-menu\web_menu.csproj", "{6979D3E5-8712-43AE-90BA-5FA12EE66314}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web_menu", "web-menu\web_menu.csproj", "{6979D3E5-8712-43AE-90BA-5FA12EE66314}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "data_models", "data_models\data_models.csproj", "{FD211666-8456-4AEE-9A60-146BBA1E3F79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "data_models", "data_models\data_models.csproj", "{FD211666-8456-4AEE-9A60-146BBA1E3F79}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "playground", "playground\playground.csproj", "{1AA38765-2430-4CFD-ABAC-5A40E9104B2C}"
 EndProject

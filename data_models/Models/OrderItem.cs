@@ -16,6 +16,7 @@ namespace data_models.Models
         public int MenuItemID { get; set; }
         [Required]
         public int Quantity { get; set; }
+        public string Comment { get; set; }
 
         //Navigation Properties
         public Order Order { get; set; }

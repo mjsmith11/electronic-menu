@@ -51,7 +51,7 @@ namespace web_menu.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddItem(int? TableId, int Quantity, int? SideId1, int? SideId2, int ItemId)
+        public async Task<IActionResult> AddItem(int? TableId, int Quantity, int? SideId1, int? SideId2, int ItemId, string Comment)
         {
             byte[] orderIdBytes;
             int orderId;
@@ -78,7 +78,8 @@ namespace web_menu.Controllers
             {
                 MenuItemID = ItemId,
                 OrderID = orderId,
-                Quantity = Quantity
+                Quantity = Quantity,
+                Comment = Comment
             };
             _context.OrderItems.Add(item);
 

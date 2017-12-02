@@ -47,6 +47,35 @@ namespace web_menu.Controllers
 
             return View(order);
         }
+        [HttpPost]
+        public async Task<IActionResult> Index(int id, int? order)
+        {
+            var couponToUpdate = await _context.Coupons.SingleOrDefaultAsync(t => t.CouponNumber == id);
+            couponToUpdate.Status = false;
+            couponToUpdate.OrderID = (int)order;
+            double discount = (double)couponToUpdate.DiscountPrice;
+            await _context.SaveChangesAsync(); 
+
+            var orders= await _context.Orders
+                .AsNoTracking()
+                .Include(o => o.OrderItems)
+                .ThenInclude(i => i.MenuItem)
+                .SingleOrDefaultAsync(o => o.OrderID == order);
+
+            double total = 0;
+            bool paid = orders.IsPaid;
+            foreach (var orderItem in orders.OrderItems)
+            {
+                total += (double)orderItem.ExtendedPrice;
+            }
+
+            ViewData["Total"] = total-discount;
+            ViewData["Orderid"] = paid;
+
+            ViewData["couponNumber"] = id;
+            ViewData["discount"] = discount;         
+            return View(orders);
+        }
 
         public async Task<IActionResult> recipt(string cardnumber, int? table, int? id, int? tips, string paymentMethod, string CustomerName, int totalprice, string email)
         {
@@ -99,19 +128,40 @@ namespace web_menu.Controllers
 
 
         }
-        public async Task<IActionResult> validCoupon(int Coupon)
+        public async Task<IActionResult> ValidCoupon(int Coupon, int id)
         {
             var coupons = await _context.Coupons
             .AsNoTracking()
-            .SingleOrDefaultAsync(m => m.CouponNumber == Coupon);
-            if (coupons == null)
+            .SingleOrDefaultAsync(o => o.CouponNumber == Coupon);
+            var status = coupons.Status;
+            if (coupons==null || status == false)
             {
                 ViewData["valid"] = "This Coupon is invalid";
             }
             else
             {
-                ViewData["valid"] = "This Coupon can be used";
+                var currentTime = System.DateTime.Now;
+                var startTime = coupons.StartDate;
+                var endTime = coupons.EndDate;
+                if (currentTime < startTime)
+                {
+                    ViewData["valid"] = "This Coupon not start yet";
+                }
+                else
+                {
+                    if (currentTime >= startTime && currentTime <= endTime)
+                    {
+                        ViewData["valid"] = "This Coupon can be used";
+                        ViewData["Orderid"] = id;
+                        ViewData["couponNumber"] = coupons.CouponNumber;
+                    }
+                    else
+                    {
+                        ViewData["valid"] = "This Coupon is Expired";
+                    }
+                }
             }
+
 
             return View(coupons);
         }

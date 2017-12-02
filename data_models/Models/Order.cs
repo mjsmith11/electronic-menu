@@ -24,6 +24,6 @@ namespace data_models.Models
         ///Navigation Properties
         public Table Table { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
-        
+
     }
 }

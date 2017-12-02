@@ -23,8 +23,9 @@
         <dt>End Date:</dt>
         <dd>@Html.DisplayFor(o => Model.EndDate)</dd>
     </dl><br />
-    <form asp-action="Discount" method="post">
+    <form asp-action="Index" method="post">
         <input type="hidden" name="id" value="@Model.CouponNumber" />
+        <input type="hidden" name="order" value="@((int)ViewData["Orderid"])" />
         <input type="submit" value="Using this Coupon" class="btn btn-default" /> |
     </form>
 </div>

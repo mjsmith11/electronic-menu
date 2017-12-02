@@ -392,5 +392,11 @@ namespace menu_manager.Forms
                 MessageBox.Show(error, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void coupon_Click(object sender, EventArgs e)
+        {
+            CouponForm welcome = new CouponForm();
+            welcome.ShowDialog();
+        }
     }
 }

@@ -1,9 +1,10 @@
 ﻿@model data_models.Models.Order
+
 @section headscripts{
     <script type="text/javascript">
-    function split() {
-        var splitters = document.getElementById("ways").value;
-        var total = @((double)ViewData["Total"]);
+        function split() {
+            var splitters = document.getElementById("ways").value;
+            var total = @((double)ViewData["Total"]);
         var costEach = total / splitters;
         costEach = costEach.toFixed(2);
         document.getElementById("AmountEach").value = "$" + costEach;
@@ -17,9 +18,6 @@
     window.onload = function () {
         $("#payCradInfor").hide();
         $("#div1").hide();
-        if ( @((bool)ViewData["Orderid"]) == true) {
-            document.getElementById("payBill").className = "btn btn-primary btn-lg text-right disabled";
-        }
     }
 
     $(document).ready(function () {
@@ -56,29 +54,48 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.OrderItems)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MenuItem.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MenuItem.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExtendedPrice)
-                </td>
-                <td>
-                    <a asp-action="DeleteItem" asp-route-id="@item.OrderItemID">Remove</a>
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model.OrderItems)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItem.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItem.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExtendedPrice)
+            </td>
+            <td>
+                <a asp-action="DeleteItem" asp-route-id="@item.OrderItemID">Remove</a>
+            </td>
+        </tr>
+    }
+    @if (ViewData["couponNumber"] != null)
+    {
+        <tr>
+            <td>
+               Coupon Number:
+            </td>
+            <td>
+                <h4>@((int)ViewData["couponNumber"])</h4>
+            </td>
+            <td>
+                Discount Price
+            </td>
+            <td>
+                <h4>-@(((double)ViewData["discount"]).ToString("C"))</h4>
+            </td>
+            <td></td>
+        </tr>
         <tr class="alert-info">
-            <td></td>
-            <td></td>
+            <td>
+            </td>
+            <td>
+            </td>
             <td>
                 <h3>Balance</h3>
             </td>
@@ -87,6 +104,24 @@
             </td>
             <td></td>
         </tr>
+        }
+        else
+        {
+            <tr class="alert-info">
+                <td>                   
+                </td>
+                <td>                   
+                </td>
+                <td>
+                    <h3>Balance</h3>
+                </td>
+                <td>
+                    <h3>@(((double)ViewData["Total"]).ToString("C"))</h3>
+                </td>
+                <td></td>
+            </tr>
+
+        }
     </tbody>
 </table>
 
@@ -110,8 +145,9 @@
             <a id="useCoupon">If you have Coupon, Please Click Here.</a>
             <div id="div1">
                 <br />
-                <form asp-action="validCoupon">
+                <form asp-action="ValidCoupon">
                     <label for="Coupon">Coupon No:</label><br />
+                    <input type="hidden" name="id" value="@Model.OrderID" />
                     <input name="Coupon" type="number" class="form-control" placeholder="Please Input the Valid Coupon, Not Acceptable Expired One ">
                     <br /> <input type="submit" value="Using Coupon" class="btn btn-primary" />
                 </form>
@@ -210,4 +246,3 @@
         </div>
     </div>
 </div>
-

@@ -59,6 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBControllers\MenuItemController.cs" />
+    <Compile Include="Forms\CouponForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CouponForm.Designer.cs">
+      <DependentUpon>CouponForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>

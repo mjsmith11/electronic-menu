@@ -39,7 +39,7 @@
                             <span><a asp-action="AddItem" asp-controller="Order" asp-route-id="@item.MenuItemID" class="menu-item">@Html.DisplayFor(name => title) </a></span>
                             @if (item.DiscountPrice == null)
                             {
-                                <span>@Html.DisplayFor(price => item.Price)</span>
+                                <span class="no-discount">@Html.DisplayFor(price => item.Price)</span>
                             }
                             else
                             {

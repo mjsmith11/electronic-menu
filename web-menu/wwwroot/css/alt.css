@@ -1,0 +1,156 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/* 
+ * The CSS below for displaying the menu is adapted from: 
+ * https://codepen.io/myackley35/pen/MwmYxP
+ */
+*, *:after, *:before {
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.menu-container {
+    width: 100%;
+    margin: 1em auto;
+    border: 1px solid #ddd;
+    border-color: green;
+    padding: .3em .6em;
+}
+
+.menu-container p {
+    font-size: .9em;
+    color: #777;
+    margin-bottom: 1.5em;
+    font-style: italic;
+}
+
+.menu-container:before {
+    display: table;
+    content: " ";
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+.menu-container:after {
+    display: table;
+    content: " ";
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+.menu-group-header span {
+        float: left;
+        width: 50%;
+        text-align: center;
+        display: block;
+}
+
+h4.menu {
+    position: relative;
+    font-weight: 500;
+    margin: .7em 0 1em 0;
+    font-family: 'Lucida Handwriting';
+    font-size: large;
+    color:red;
+}
+
+h4.menu span {
+    float: left;
+    width: 10%;
+    text-align: center;
+    display: block;
+    font-family: 'Lucida Handwriting';
+    font-size: large;
+}
+
+h4.menu span.no-discount {
+        color: red;          
+}
+
+h4.menu span:first-child {
+        width: 40%;
+        text-align: left;
+}
+
+h4.menu span.dots {
+        width: 40%;
+        border-bottom: 2px dotted red;
+        margin-top: .8em;
+}
+
+.h4.menu:before {
+    display: table;
+    content: " ";
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+h4.menu:after {
+    display: table;
+    content: " ";
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+.menu-section {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h4.menu span.menu-discount {
+    color: green;
+}
+a.menu-item {
+    color: red;
+    font-family:'Lucida Handwriting';
+    font-size: large;
+}
+
+a.menu-item:hover {
+    text-decoration:none;
+    font-weight:bolder;
+}
+
+div.menu-section h3 {
+    color: green;
+    font-family: Comic Sans, Comic Sans MS, cursive;
+}

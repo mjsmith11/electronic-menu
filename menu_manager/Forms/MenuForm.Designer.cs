@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlList = new System.Windows.Forms.Panel();
+            this.coupon = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@
             this.pnlUpdateButtons = new System.Windows.Forms.Panel();
             this.btnUpdateCancel = new System.Windows.Forms.Button();
             this.btnUpdateSave = new System.Windows.Forms.Button();
-            this.coupon = new System.Windows.Forms.Button();
             this.pnlList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMenuItems)).BeginInit();
             this.pnlItemDetail.SuspendLayout();
@@ -76,15 +76,26 @@
             this.pnlList.Controls.Add(this.btnCreate);
             this.pnlList.Controls.Add(this.gvMenuItems);
             this.pnlList.Location = new System.Drawing.Point(8, 7);
-            this.pnlList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlList.Margin = new System.Windows.Forms.Padding(2);
             this.pnlList.Name = "pnlList";
             this.pnlList.Size = new System.Drawing.Size(838, 527);
             this.pnlList.TabIndex = 0;
             // 
+            // coupon
+            // 
+            this.coupon.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.coupon.Location = new System.Drawing.Point(721, 495);
+            this.coupon.Name = "coupon";
+            this.coupon.Size = new System.Drawing.Size(111, 23);
+            this.coupon.TabIndex = 4;
+            this.coupon.Text = "Coupon Manager";
+            this.coupon.UseVisualStyleBackColor = false;
+            this.coupon.Click += new System.EventHandler(this.coupon_Click);
+            // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(375, 494);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(84, 25);
             this.btnUpdate.TabIndex = 3;
@@ -95,7 +106,7 @@
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(463, 494);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(84, 25);
             this.btnDelete.TabIndex = 2;
@@ -106,7 +117,7 @@
             // btnCreate
             // 
             this.btnCreate.Location = new System.Drawing.Point(287, 494);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(84, 25);
             this.btnCreate.TabIndex = 1;
@@ -121,7 +132,7 @@
             this.gvMenuItems.AllowUserToOrderColumns = true;
             this.gvMenuItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvMenuItems.Location = new System.Drawing.Point(0, 2);
-            this.gvMenuItems.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gvMenuItems.Margin = new System.Windows.Forms.Padding(2);
             this.gvMenuItems.MultiSelect = false;
             this.gvMenuItems.Name = "gvMenuItems";
             this.gvMenuItems.ReadOnly = true;
@@ -147,7 +158,7 @@
             this.pnlItemDetail.Controls.Add(this.ddlCategory);
             this.pnlItemDetail.Controls.Add(this.lblCategory);
             this.pnlItemDetail.Location = new System.Drawing.Point(8, 7);
-            this.pnlItemDetail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlItemDetail.Margin = new System.Windows.Forms.Padding(2);
             this.pnlItemDetail.Name = "pnlItemDetail";
             this.pnlItemDetail.Size = new System.Drawing.Size(281, 179);
             this.pnlItemDetail.TabIndex = 2;
@@ -166,7 +177,7 @@
             // 
             this.cbxSpecialty.AutoSize = true;
             this.cbxSpecialty.Location = new System.Drawing.Point(75, 156);
-            this.cbxSpecialty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxSpecialty.Margin = new System.Windows.Forms.Padding(2);
             this.cbxSpecialty.Name = "cbxSpecialty";
             this.cbxSpecialty.Size = new System.Drawing.Size(15, 14);
             this.cbxSpecialty.TabIndex = 13;
@@ -186,7 +197,7 @@
             // 
             this.cbxAvailable.AutoSize = true;
             this.cbxAvailable.Location = new System.Drawing.Point(75, 140);
-            this.cbxAvailable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxAvailable.Margin = new System.Windows.Forms.Padding(2);
             this.cbxAvailable.Name = "cbxAvailable";
             this.cbxAvailable.Size = new System.Drawing.Size(15, 14);
             this.cbxAvailable.TabIndex = 11;
@@ -195,7 +206,7 @@
             // tbxDiscountPrice
             // 
             this.tbxDiscountPrice.Location = new System.Drawing.Point(94, 121);
-            this.tbxDiscountPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxDiscountPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tbxDiscountPrice.Mask = "$990.00";
             this.tbxDiscountPrice.Name = "tbxDiscountPrice";
             this.tbxDiscountPrice.Size = new System.Drawing.Size(177, 21);
@@ -215,7 +226,7 @@
             // 
             this.cbxDiscount.AutoSize = true;
             this.cbxDiscount.Location = new System.Drawing.Point(75, 124);
-            this.cbxDiscount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxDiscount.Margin = new System.Windows.Forms.Padding(2);
             this.cbxDiscount.Name = "cbxDiscount";
             this.cbxDiscount.Size = new System.Drawing.Size(15, 14);
             this.cbxDiscount.TabIndex = 8;
@@ -235,7 +246,7 @@
             // tbxPrice
             // 
             this.tbxPrice.Location = new System.Drawing.Point(75, 102);
-            this.tbxPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tbxPrice.Mask = "$990.00";
             this.tbxPrice.Name = "tbxPrice";
             this.tbxPrice.Size = new System.Drawing.Size(195, 21);
@@ -254,7 +265,7 @@
             // rtbDescription
             // 
             this.rtbDescription.Location = new System.Drawing.Point(75, 41);
-            this.rtbDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rtbDescription.Margin = new System.Windows.Forms.Padding(2);
             this.rtbDescription.MaxLength = 250;
             this.rtbDescription.Name = "rtbDescription";
             this.rtbDescription.Size = new System.Drawing.Size(195, 59);
@@ -264,7 +275,7 @@
             // tbxTitle
             // 
             this.tbxTitle.Location = new System.Drawing.Point(75, 20);
-            this.tbxTitle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxTitle.Margin = new System.Windows.Forms.Padding(2);
             this.tbxTitle.MaxLength = 50;
             this.tbxTitle.Name = "tbxTitle";
             this.tbxTitle.Size = new System.Drawing.Size(195, 21);
@@ -284,7 +295,7 @@
             // 
             this.ddlCategory.FormattingEnabled = true;
             this.ddlCategory.Location = new System.Drawing.Point(75, 0);
-            this.ddlCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ddlCategory.Margin = new System.Windows.Forms.Padding(2);
             this.ddlCategory.Name = "ddlCategory";
             this.ddlCategory.Size = new System.Drawing.Size(195, 20);
             this.ddlCategory.TabIndex = 1;
@@ -305,7 +316,7 @@
             this.pnlCreateButtons.Controls.Add(this.btnCreateCancel);
             this.pnlCreateButtons.Controls.Add(this.btnCreateSave);
             this.pnlCreateButtons.Location = new System.Drawing.Point(8, 187);
-            this.pnlCreateButtons.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlCreateButtons.Margin = new System.Windows.Forms.Padding(2);
             this.pnlCreateButtons.Name = "pnlCreateButtons";
             this.pnlCreateButtons.Size = new System.Drawing.Size(279, 60);
             this.pnlCreateButtons.TabIndex = 2;
@@ -313,7 +324,7 @@
             // btnCreateCancel
             // 
             this.btnCreateCancel.Location = new System.Drawing.Point(143, 20);
-            this.btnCreateCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreateCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreateCancel.Name = "btnCreateCancel";
             this.btnCreateCancel.Size = new System.Drawing.Size(69, 25);
             this.btnCreateCancel.TabIndex = 1;
@@ -324,7 +335,7 @@
             // btnCreateSave
             // 
             this.btnCreateSave.Location = new System.Drawing.Point(70, 20);
-            this.btnCreateSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreateSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreateSave.Name = "btnCreateSave";
             this.btnCreateSave.Size = new System.Drawing.Size(69, 25);
             this.btnCreateSave.TabIndex = 0;
@@ -338,7 +349,7 @@
             this.pnlDeleteButtons.Controls.Add(this.btnDeleteNo);
             this.pnlDeleteButtons.Controls.Add(this.btnDeleteYes);
             this.pnlDeleteButtons.Location = new System.Drawing.Point(9, 184);
-            this.pnlDeleteButtons.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlDeleteButtons.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDeleteButtons.Name = "pnlDeleteButtons";
             this.pnlDeleteButtons.Size = new System.Drawing.Size(279, 94);
             this.pnlDeleteButtons.TabIndex = 3;
@@ -358,7 +369,7 @@
             // btnDeleteNo
             // 
             this.btnDeleteNo.Location = new System.Drawing.Point(142, 50);
-            this.btnDeleteNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeleteNo.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteNo.Name = "btnDeleteNo";
             this.btnDeleteNo.Size = new System.Drawing.Size(69, 25);
             this.btnDeleteNo.TabIndex = 1;
@@ -369,7 +380,7 @@
             // btnDeleteYes
             // 
             this.btnDeleteYes.Location = new System.Drawing.Point(69, 50);
-            this.btnDeleteYes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeleteYes.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteYes.Name = "btnDeleteYes";
             this.btnDeleteYes.Size = new System.Drawing.Size(69, 25);
             this.btnDeleteYes.TabIndex = 0;
@@ -382,7 +393,7 @@
             this.pnlUpdateButtons.Controls.Add(this.btnUpdateCancel);
             this.pnlUpdateButtons.Controls.Add(this.btnUpdateSave);
             this.pnlUpdateButtons.Location = new System.Drawing.Point(8, 188);
-            this.pnlUpdateButtons.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlUpdateButtons.Margin = new System.Windows.Forms.Padding(2);
             this.pnlUpdateButtons.Name = "pnlUpdateButtons";
             this.pnlUpdateButtons.Size = new System.Drawing.Size(279, 60);
             this.pnlUpdateButtons.TabIndex = 4;
@@ -390,7 +401,7 @@
             // btnUpdateCancel
             // 
             this.btnUpdateCancel.Location = new System.Drawing.Point(143, 19);
-            this.btnUpdateCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdateCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateCancel.Name = "btnUpdateCancel";
             this.btnUpdateCancel.Size = new System.Drawing.Size(69, 25);
             this.btnUpdateCancel.TabIndex = 1;
@@ -401,24 +412,13 @@
             // btnUpdateSave
             // 
             this.btnUpdateSave.Location = new System.Drawing.Point(70, 19);
-            this.btnUpdateSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdateSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateSave.Name = "btnUpdateSave";
             this.btnUpdateSave.Size = new System.Drawing.Size(69, 25);
             this.btnUpdateSave.TabIndex = 0;
             this.btnUpdateSave.Text = "Save";
             this.btnUpdateSave.UseVisualStyleBackColor = true;
             this.btnUpdateSave.Click += new System.EventHandler(this.btnUpdateSave_Click);
-            // 
-            // coupon
-            // 
-            this.coupon.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.coupon.Location = new System.Drawing.Point(721, 495);
-            this.coupon.Name = "coupon";
-            this.coupon.Size = new System.Drawing.Size(111, 23);
-            this.coupon.TabIndex = 4;
-            this.coupon.Text = "Coupon Manager";
-            this.coupon.UseVisualStyleBackColor = false;
-            this.coupon.Click += new System.EventHandler(this.coupon_Click);
             // 
             // MenuForm
             // 
@@ -430,7 +430,7 @@
             this.Controls.Add(this.pnlList);
             this.Controls.Add(this.pnlUpdateButtons);
             this.Controls.Add(this.pnlCreateButtons);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MenuForm";
             this.Text = "Menu Manager";
             this.pnlList.ResumeLayout(false);

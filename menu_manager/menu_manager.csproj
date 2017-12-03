@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBControllers\CouponControllers.cs" />
     <Compile Include="DBControllers\MenuItemController.cs" />
     <Compile Include="Forms\CouponForm.cs">
       <SubType>Form</SubType>
@@ -73,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\CouponForm.resx">
+      <DependentUpon>CouponForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>

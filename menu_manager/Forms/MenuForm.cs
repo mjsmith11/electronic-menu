@@ -395,7 +395,7 @@ namespace menu_manager.Forms
 
         private void coupon_Click(object sender, EventArgs e)
         {
-            CouponForm welcome = new CouponForm();
+            CouponForm welcome = new CouponForm(_context);
             welcome.ShowDialog();
         }
     }

@@ -133,13 +133,14 @@ namespace web_menu.Controllers
             var coupons = await _context.Coupons
             .AsNoTracking()
             .SingleOrDefaultAsync(o => o.CouponNumber == Coupon);
-            var status = coupons.Status;
-            if (coupons==null || status == false)
+           
+            if (coupons==null || coupons.Status==false)
             {
                 ViewData["valid"] = "This Coupon is invalid";
             }
             else
             {
+              
                 var currentTime = System.DateTime.Now;
                 var startTime = coupons.StartDate;
                 var endTime = coupons.EndDate;

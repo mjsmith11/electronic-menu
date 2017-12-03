@@ -50,5 +50,18 @@ namespace menu_manager.DBControllers
                 return false;
             }
         }
+
+        internal static void UpdateItemByObject(NetFrameworkMenuContext context, int activeID, Coupon obj)
+        {
+            var itemToUpdate = context.Coupons
+                .SingleOrDefault(m => m.CouponID == activeID);
+
+            itemToUpdate.CouponNumber = obj.CouponNumber;
+            itemToUpdate.DiscountPrice = obj.DiscountPrice;
+            itemToUpdate.StartDate = obj.StartDate;
+            itemToUpdate.EndDate = obj.EndDate;
+            itemToUpdate.Status = obj.Status;
+            context.SaveChanges();
+        }
     }
 }

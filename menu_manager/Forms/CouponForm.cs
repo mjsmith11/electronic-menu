@@ -33,6 +33,7 @@ namespace menu_manager.Forms
             panelList.Show();
             pnlDeleteButtons.Hide();
             CouponGridView.Show();
+            Updatepanel.Hide();
         }
 
         private void loadMenuData()
@@ -93,6 +94,7 @@ namespace menu_manager.Forms
             pnlCreateButtons.Show();
             pnlDeleteButtons.Hide();
             CouponGridView.Hide();
+            Updatepanel.Hide();
         }
 
         private void clearDetails()
@@ -189,7 +191,7 @@ namespace menu_manager.Forms
 
         private void NumbertextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
             {
                 e.Handled = true; 
             }
@@ -206,6 +208,7 @@ namespace menu_manager.Forms
             pnlDeleteButtons.Show();
             CouponGridView.Hide();
             pnlCreateButtons.Hide();
+            Updatepanel.Hide();
 
         }
 
@@ -252,6 +255,41 @@ namespace menu_manager.Forms
             CouponControllers.DeleteItemById(_context, (int)activeID);
             loadMenuData();
             showMenuList();
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            clearDetails();
+            int index = CouponGridView.SelectedCells[0].RowIndex;
+            loadListRowIntoDetails(index);
+            enableAllDetailsControls();
+            CouponGridView.Hide();
+            panelList.Show();
+            pnlItemDetail.Show();
+            Updatepanel.Show();
+        }
+
+        private void noUpdatebutton_Click(object sender, EventArgs e)
+        {
+            showMenuList();
+        }
+
+        private void updatebutton_Click(object sender, EventArgs e)
+        {
+            String error = validateAllControls();
+            if (error == "")
+            {
+                data_models.Models.Coupon m = new data_models.Models.Coupon();
+                updateObjectFromForm(ref m);
+                CouponControllers.UpdateItemByObject(_context, (int)activeID, m);
+                loadMenuData();
+                showMenuList();
+
+            }
+            else
+            {
+                MessageBox.Show(error, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

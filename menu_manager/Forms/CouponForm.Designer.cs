@@ -51,11 +51,15 @@
             this.DeteleButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
             this.Creatbutton = new System.Windows.Forms.Button();
+            this.Updatepanel = new System.Windows.Forms.Panel();
+            this.updatebutton = new System.Windows.Forms.Button();
+            this.noUpdatebutton = new System.Windows.Forms.Button();
             this.panelList.SuspendLayout();
             this.pnlDeleteButtons.SuspendLayout();
             this.pnlCreateButtons.SuspendLayout();
             this.pnlItemDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CouponGridView)).BeginInit();
+            this.Updatepanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelList
@@ -67,6 +71,7 @@
             this.panelList.Controls.Add(this.EditButton);
             this.panelList.Controls.Add(this.Creatbutton);
             this.panelList.Controls.Add(this.pnlCreateButtons);
+            this.panelList.Controls.Add(this.Updatepanel);
             this.panelList.Location = new System.Drawing.Point(-1, 0);
             this.panelList.Name = "panelList";
             this.panelList.Size = new System.Drawing.Size(593, 505);
@@ -272,6 +277,7 @@
             this.EditButton.TabIndex = 1;
             this.EditButton.Text = "Edit";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // Creatbutton
             // 
@@ -282,6 +288,35 @@
             this.Creatbutton.Text = "New";
             this.Creatbutton.UseVisualStyleBackColor = true;
             this.Creatbutton.Click += new System.EventHandler(this.Creatbutton_Click);
+            // 
+            // Updatepanel
+            // 
+            this.Updatepanel.Controls.Add(this.noUpdatebutton);
+            this.Updatepanel.Controls.Add(this.updatebutton);
+            this.Updatepanel.Location = new System.Drawing.Point(3, 180);
+            this.Updatepanel.Name = "Updatepanel";
+            this.Updatepanel.Size = new System.Drawing.Size(313, 97);
+            this.Updatepanel.TabIndex = 12;
+            // 
+            // updatebutton
+            // 
+            this.updatebutton.Location = new System.Drawing.Point(51, 36);
+            this.updatebutton.Name = "updatebutton";
+            this.updatebutton.Size = new System.Drawing.Size(75, 23);
+            this.updatebutton.TabIndex = 0;
+            this.updatebutton.Text = "Submit";
+            this.updatebutton.UseVisualStyleBackColor = true;
+            this.updatebutton.Click += new System.EventHandler(this.updatebutton_Click);
+            // 
+            // noUpdatebutton
+            // 
+            this.noUpdatebutton.Location = new System.Drawing.Point(181, 36);
+            this.noUpdatebutton.Name = "noUpdatebutton";
+            this.noUpdatebutton.Size = new System.Drawing.Size(75, 23);
+            this.noUpdatebutton.TabIndex = 1;
+            this.noUpdatebutton.Text = "Cancel";
+            this.noUpdatebutton.UseVisualStyleBackColor = true;
+            this.noUpdatebutton.Click += new System.EventHandler(this.noUpdatebutton_Click);
             // 
             // CouponForm
             // 
@@ -298,6 +333,7 @@
             this.pnlItemDetail.ResumeLayout(false);
             this.pnlItemDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CouponGridView)).EndInit();
+            this.Updatepanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -327,5 +363,8 @@
         private System.Windows.Forms.Button nobutton;
         private System.Windows.Forms.Button yesbutton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel Updatepanel;
+        private System.Windows.Forms.Button noUpdatebutton;
+        private System.Windows.Forms.Button updatebutton;
     }
 }

@@ -25,6 +25,8 @@ namespace menu_manager.Forms
             loadMenuData();
             showMenuList();
 
+            setupWebTemplateForm();
+
         }
 
         private void loadMenuData()
@@ -278,6 +280,7 @@ namespace menu_manager.Forms
             return d.ToString();
         }
 
+        #region Menu Management Handlers
         private void cbxDiscount_CheckedChanged(object sender, EventArgs e)
         {
             if (cbxDiscount.Checked)
@@ -398,5 +401,30 @@ namespace menu_manager.Forms
             CouponForm welcome = new CouponForm(_context);
             welcome.ShowDialog();
         }
+        #endregion
+
+        
+        #region WebTemplate
+        public void setupWebTemplateForm()
+        {
+            List<string> css = CssController.ReturnAllDisplayNames(_context);
+            ddlTemplate.DataSource = css;
+
+            ddlTemplate.Text = CssController.ReturnSelectedCSS(_context);
+            
+        }
+
+        private void btnTemplateSave_Click(object sender, EventArgs e)
+        {
+            CssController.UpdateActiveCSS(_context, ddlTemplate.Text);
+
+            MessageBox.Show("Web Template has been updated to " + ddlTemplate.Text, "Web Template Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            setupWebTemplateForm();
+        }
+
+        #endregion
+
+
     }
 }

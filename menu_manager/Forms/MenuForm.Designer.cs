@@ -62,7 +62,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.gvMenuItems = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabTemplate = new System.Windows.Forms.TabPage();
+            this.lblTemplate = new System.Windows.Forms.Label();
+            this.ddlTemplate = new System.Windows.Forms.ComboBox();
+            this.btnTemplateSave = new System.Windows.Forms.Button();
             this.tcTabControl.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.pnlCreateButtons.SuspendLayout();
@@ -71,12 +74,13 @@
             this.pnlItemDetail.SuspendLayout();
             this.pnlList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMenuItems)).BeginInit();
+            this.tabTemplate.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcTabControl
             // 
             this.tcTabControl.Controls.Add(this.tabMenu);
-            this.tcTabControl.Controls.Add(this.tabPage2);
+            this.tcTabControl.Controls.Add(this.tabTemplate);
             this.tcTabControl.Location = new System.Drawing.Point(13, 13);
             this.tcTabControl.Name = "tcTabControl";
             this.tcTabControl.SelectedIndex = 0;
@@ -450,15 +454,46 @@
             this.gvMenuItems.Size = new System.Drawing.Size(833, 523);
             this.gvMenuItems.TabIndex = 0;
             // 
-            // tabPage2
+            // tabTemplate
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(912, 585);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabTemplate.Controls.Add(this.btnTemplateSave);
+            this.tabTemplate.Controls.Add(this.ddlTemplate);
+            this.tabTemplate.Controls.Add(this.lblTemplate);
+            this.tabTemplate.Location = new System.Drawing.Point(4, 22);
+            this.tabTemplate.Name = "tabTemplate";
+            this.tabTemplate.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTemplate.Size = new System.Drawing.Size(912, 585);
+            this.tabTemplate.TabIndex = 1;
+            this.tabTemplate.Text = "Web Template";
+            this.tabTemplate.UseVisualStyleBackColor = true;
+            // 
+            // lblTemplate
+            // 
+            this.lblTemplate.AutoSize = true;
+            this.lblTemplate.Location = new System.Drawing.Point(7, 7);
+            this.lblTemplate.Name = "lblTemplate";
+            this.lblTemplate.Size = new System.Drawing.Size(51, 13);
+            this.lblTemplate.TabIndex = 0;
+            this.lblTemplate.Text = "Template";
+            // 
+            // ddlTemplate
+            // 
+            this.ddlTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlTemplate.FormattingEnabled = true;
+            this.ddlTemplate.Location = new System.Drawing.Point(65, 4);
+            this.ddlTemplate.Name = "ddlTemplate";
+            this.ddlTemplate.Size = new System.Drawing.Size(152, 21);
+            this.ddlTemplate.TabIndex = 1;
+            // 
+            // btnTemplateSave
+            // 
+            this.btnTemplateSave.Location = new System.Drawing.Point(141, 32);
+            this.btnTemplateSave.Name = "btnTemplateSave";
+            this.btnTemplateSave.Size = new System.Drawing.Size(75, 23);
+            this.btnTemplateSave.TabIndex = 2;
+            this.btnTemplateSave.Text = "Save";
+            this.btnTemplateSave.UseVisualStyleBackColor = true;
+            this.btnTemplateSave.Click += new System.EventHandler(this.btnTemplateSave_Click);
             // 
             // MenuForm
             // 
@@ -479,6 +514,8 @@
             this.pnlItemDetail.PerformLayout();
             this.pnlList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvMenuItems)).EndInit();
+            this.tabTemplate.ResumeLayout(false);
+            this.tabTemplate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -519,6 +556,9 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.DataGridView gvMenuItems;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabTemplate;
+        private System.Windows.Forms.ComboBox ddlTemplate;
+        private System.Windows.Forms.Label lblTemplate;
+        private System.Windows.Forms.Button btnTemplateSave;
     }
 }

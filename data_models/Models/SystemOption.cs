@@ -8,8 +8,11 @@ namespace data_models.Models
 {
     public class SystemOption
     {
-        [Key]
+        public int SystemOptionId { get; set; }
+
         [StringLength(30)]
+        [Index(IsUnique =true)]
+        [Required]
         public string Key { get; set; }
 
         [StringLength(50)]

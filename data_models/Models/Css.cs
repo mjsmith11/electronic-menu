@@ -8,8 +8,11 @@ namespace data_models.Models
 {
     public class Css
     {
-        [Key]
+        public int CssId { get; set; }
+
         [StringLength(30)]
+        [Index(IsUnique =true)]
+        [Required]
         public string DisplayName { get; set; }
 
         [Required]

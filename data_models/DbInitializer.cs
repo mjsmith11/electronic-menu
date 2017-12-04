@@ -130,6 +130,7 @@ namespace data_models
         public static void seedCss(NetCoreMenuContext context)
         {
             context.Css.Add(new Css { DisplayName = "Default", DevHref = "/css/site.css", ProdHref = "/css/site.min.css" });
+            context.Css.Add(new Css { DisplayName = "Alternate", DevHref = "/css/alt.css", ProdHref = "/css/alt.min.css" });
             context.SaveChanges();
         }
 

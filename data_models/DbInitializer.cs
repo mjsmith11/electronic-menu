@@ -21,6 +21,14 @@ namespace data_models
             {
                 seedMenuItems(context);
             }
+            if(!context.Css.Any())
+            {
+                seedCss(context);
+            }
+            if(!context.SystemOptions.Any())
+            {
+                seedSystemOpts(context);
+            }
 
             
         }
@@ -116,6 +124,19 @@ namespace data_models
             {
                 context.MenuItems.Add(i);
             }
+            context.SaveChanges();
+        }
+
+        public static void seedCss(NetCoreMenuContext context)
+        {
+            context.Css.Add(new Css { DisplayName = "Default", DevHref = "/css/site.css", ProdHref = "/css/site.min.css" });
+            context.Css.Add(new Css { DisplayName = "Alternate", DevHref = "/css/alt.css", ProdHref = "/css/alt.min.css" });
+            context.SaveChanges();
+        }
+
+        public static void seedSystemOpts(NetCoreMenuContext context)
+        {
+            context.SystemOptions.Add(new SystemOption { Key = SystemOption.CSS_KEY, Value = "Default" });
             context.SaveChanges();
         }
     }

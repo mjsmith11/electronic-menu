@@ -12,6 +12,8 @@ Model classes in subdirectories do not correspond to database tables. This proje
 ### menu_manager
 This project runs is a Windows application for use by managers to maintain the menu.  It provides basic CRUD operations for the items on the menu. It uses a .NET Framework form as a view, and a C# class that acts as a controller to interact with the MenuItem data model in the data_models project.
 
+menu_manager also has a controller for css and allows the manager to choose the css template for the site.
+
  
 ### playground
 This project serves no purpose in the functionality of the electronic-menu system.  It was used as a proof of concept for sharing the same set of models between an ASP.NET web application and .NET Framework application for Windows.
@@ -29,3 +31,4 @@ This is an ASP.NET MVC web application.  Views and controllers are contained in 
  - Submiting an order
  - Report on total sales for orders in the database
  - Show itemized bill.
+ - Use css specified by database.

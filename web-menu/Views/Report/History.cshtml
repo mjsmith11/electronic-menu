@@ -1,41 +1,81 @@
 ﻿@model IEnumerable<data_models.Models.paymentInfor>
 @{
     ViewData["Title"] = "History";
-}
+} 
+
 <script type="text/javascript">
     function backReport() {
-        window.location.href = "AllSales";
+        window.location.href = "/Report/AllSales";
 
     }
+
 </script>
 
 <h2>History Order Sale</h2>
+
+<div class="row">
+    <form asp-action="History" method="get">
+        <div class="col-sm-6">
+            <div class="form-actions no-color">
+                <p>
+                    Find by:
+                    <select name="selected" class="selectpicker">
+                        <option selected="selected">-Select-</option>
+                        <option value="Time">Time</option>
+                        <option value="OrderID">OrderID</option>
+                        <option value="TableID">TableID</option>
+                    </select>
+                    <input type="text" name="SearchString" value="@ViewData["currentFilter"]">
+                    <input type="submit" value="Search" class="btn btn-default" /> |
+                    <a asp-action="History">Back to Full List</a>
+                </p>
+            </div>
+        </div><!-- /.col-lg-6 -->
+    </form>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown">
+                Sort <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu col-sm-6" role="menu">
+                <li><a asp-action="History" asp-route-sortOrder="@ViewData["timeSort"]">By Time </a></li>
+                <li><a asp-action="History" asp-route-sortOrder="@ViewData["priceSort"]">By Price</a></li>
+                <li><a asp-action="History" asp-route-sortOrder="@ViewData["tipSort"]">By Tips</a></li>
+                <li><a asp-action="History" asp-route-sortOrder="@ViewData["OrderSort"]">By OrderID</a></li>
+            </ul>
+        </div>
+</div>
+
+
+
+  
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OrderID)
+                <a asp-action="History" asp-route-sortOrder="@ViewData["OrderSort"]"> @Html.DisplayNameFor(model => model.OrderID)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TableID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalPrice)
+                <a asp-action="History" asp-route-sortOrder="@ViewData["priceSort"]">   @Html.DisplayNameFor(model => model.TotalPrice)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tips)
+                <a asp-action="History" asp-route-sortOrder="@ViewData["tipSort"]">@Html.DisplayNameFor(model => model.Tips)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PaymentMethod)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Time)
+                <a asp-action="History" asp-route-sortOrder="@ViewData["timeSort"]">  @Html.DisplayNameFor(model => model.Time)</a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+            @foreach (var item in Model)
             {
             <tr>
                 <td>
@@ -54,10 +94,10 @@
                     @Html.DisplayFor(modelItem => item.PaymentMethod)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Time)
+                   @Html.DisplayFor(modelItem => item.Time)
                 </td>
             </tr>
-        }
+            }
     </tbody>
 </table>
 <p class="text-right"><button type="button" onclick="backReport()" class="btn btn-primary">Go Back</button></p>

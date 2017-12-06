@@ -37,13 +37,19 @@ namespace web_menu.Controllers
 
             double total = 0;
             bool paid = order.IsPaid;
+            bool table = order.IsPaid;
             foreach (var orderItem in order.OrderItems)
             {
                 total += (double)orderItem.ExtendedPrice;
             }
+            if(table == true) //order has paid
+            {
+                Response.Redirect("Bill/recipt/"+id);
+            }
 
             ViewData["Total"] = total;
             ViewData["Orderid"] = paid;
+            
 
             return View(order);
         }
@@ -77,7 +83,7 @@ namespace web_menu.Controllers
             return View(orders);
         }
 
-        public async Task<IActionResult> recipt(string cardnumber, int? table, int? id, int? tips, string paymentMethod, string CustomerName, int totalprice, string email)
+        public async Task<IActionResult> recipt(int id, string cardnumber, int? table, int? tips, string paymentMethod, string CustomerName, int totalprice, string email)
         {
 
             int paymentInforId;

@@ -20,6 +20,7 @@ namespace data_models
         public DbSet<Coupon> Coupons { get; set; }
         public DbSet<SystemOption> SystemOptions { get; set; }
         public DbSet<Css> Css { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         public NetFrameworkMenuContext(DbConnection existingConnection, bool contextOwnsConnection) : base(existingConnection, contextOwnsConnection)
         {
@@ -35,6 +36,7 @@ namespace data_models
             modelBuilder.Entity<Coupon>().ToTable("Coupon");
             modelBuilder.Entity<SystemOption>().ToTable("SystemOption");
             modelBuilder.Entity<Css>().ToTable("Css");
+            modelBuilder.Entity<Review>().ToTable("Review");
         }
 
         public static NetFrameworkMenuContext GetContext()

@@ -170,7 +170,7 @@
 
                             <button type="button" class="btn btn-primary btn-lg btn-block" id="inputInforCard">Pay for Card</button>
 
-                            <form asp-action="recipt">
+                            <form asp-action="recipt" asp-route-id="@Model.OrderID">
                                 <div id="payCradInfor">
                                     <label class="radio-inline">
                                         <input type="radio" name="paymentMethod" id="optionsRadios1" value="VISA" checked> VISA
@@ -225,7 +225,6 @@
                                     <input name="tips" type="number" class="form-control" placeholder="Tips for Waiter"><br />
 
                                     <input type="hidden" name="totalprice" value="@(((double)ViewData["Total"]))" />
-                                    <input type="hidden" name="id" value="@Model.OrderID" />
                                     <input type="hidden" name="table" value="@Model.TableID" />
                                     <input type="submit" value="Submit" class="btn btn-default" />
                                     <br />

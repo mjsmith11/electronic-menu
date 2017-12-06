@@ -27,6 +27,9 @@
     <dt>Customer:</dt>
     <dd>@Html.DisplayFor(o => Model.CustomerName)</dd>
 </dl><br />
+<p class="text-left">
+    <a asp-action="Index" asp-controller="Review" asp-route-id="@Model.OrderID" asp-route-name="@Model.CustomerName">Write a customer review</a>
+</p> 
 <p class="text-right">
     <a onclick="backReport()">Back to Home Page</a>
 </p> 

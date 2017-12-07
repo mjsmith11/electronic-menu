@@ -4,11 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>More Information</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -22,20 +20,14 @@
                     @Html.DisplayNameFor(model => model.Price)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DiscountPrice)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsAvailable)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsSpecialty)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Image)
                 </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alergy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calories)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -52,24 +44,13 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DiscountPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAvailable)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsSpecialty)
-            </td>
-            <td>
                 <img src = "@item.Image" width="200" />
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MenuItemID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MenuItemID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MenuItemID">Delete</a>
+                @Html.DisplayFor(modelItem => item.Alergy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calories)
             </td>
         </tr>
 }

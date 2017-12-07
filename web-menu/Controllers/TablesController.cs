@@ -22,7 +22,7 @@ namespace web_menu.Controllers
         // GET: Tables
         public async Task<IActionResult> Index()
         {
-            var tables = _context.Tables
+            var tables = _context.Tables.Where(t => t.TableID > 0)
                 .AsNoTracking()
                 .OrderByDescending(t => t.IsEmpty)
                 .ThenBy(t => t.TableID);

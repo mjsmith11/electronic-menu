@@ -5,7 +5,7 @@
 <script type="text/javascript">
     function backReport() {
         window.location.href = "/Home/Index";
-
+        
     }
 </script>
 <h2>Payment Success, Thank You !</h2>
@@ -28,7 +28,7 @@
     <dd>@Html.DisplayFor(o => Model.CustomerName)</dd>
 </dl><br />
 <p class="text-left">
-    <a asp-action="Index" asp-controller="Review" asp-route-id="@Model.OrderID" asp-route-name="@Model.CustomerName">Write a customer review</a>
+    <a asp-action="Addreview" asp-controller="WritingReview" asp-route-id="@Model.paymentInforID" class="Bill-Recipt">Write a customer review</a>
 </p> 
 <p class="text-right">
     <a onclick="backReport()">Back to Home Page</a>

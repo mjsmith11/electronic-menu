@@ -35,8 +35,16 @@ namespace web_menu.Controllers
             }
             var item = await _context.MenuItems
                 .AsNoTracking()
+                .Include(m => m.Reviews)
                 .SingleOrDefaultAsync(m => m.MenuItemID == id);
-
+            int score = 0;
+            int no = 0;
+            foreach(var i in item.Reviews)
+            {
+                score += i.Score;
+                no++;
+            }
+            double totalScore = ((double)score / no);
             if(IncludesSides(item))
             {
                 PopulateSideDropDownList();
@@ -47,6 +55,7 @@ namespace web_menu.Controllers
                 PopulateTableDropDownList();
             }
 
+            ViewData["score"] = totalScore;
             return View(item);
         }
 
@@ -105,7 +114,7 @@ namespace web_menu.Controllers
             }
             await _context.SaveChangesAsync();
 
-            var menuItem = await _context.MenuItems.SingleAsync(m => m.MenuItemID == ItemId);
+            var menuItem = await _context.MenuItems.Include(m => m.Reviews).SingleAsync(m => m.MenuItemID == ItemId);
             ViewData["Added"] = 1;
             ViewData["OrderID"] = orderId;
             return View(menuItem);

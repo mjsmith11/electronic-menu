@@ -29,5 +29,7 @@ namespace data_models.Models
         public string Image { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; }
+
+        public ICollection<Review> Reviews { get; set; }
     }
 }

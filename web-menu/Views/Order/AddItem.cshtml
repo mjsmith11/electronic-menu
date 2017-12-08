@@ -59,6 +59,23 @@ else
                 </form>
             </div>
         </div>
+        <h3>@Model.Title Customer Review</h3>
+        <h4 class="text-warning">@(((double)ViewData["score"])) out of 5 stars</h4>
+        @foreach (var item in Model.Reviews)
+        {
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Customer； @Html.DisplayFor(modelItem => item.CustomerName)</h3>
+                    <p class="text-right">Score: @item.Score</p>
+                </div>
+                <div class="panel-body">
+                   @Html.DisplayFor(modelItem => item.Description)                   
+                </div>
+                <p class="text-right">@Html.DisplayFor(modelItem => item.Time)</p>
+            </div>
+
+        }
+
     }
     else
     {

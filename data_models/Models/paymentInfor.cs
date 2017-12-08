@@ -31,6 +31,8 @@ namespace data_models.Models
         [Required]
         [StringLength(40, MinimumLength = 1)]
         public string email { get; set; }
+        
+        public Order Order { get;set; }
 
     }
 }

@@ -1,0 +1,32 @@
+﻿@model data_models.Models.Order
+@{
+    ViewData["Title"] = "Addreview";
+}
+
+
+<div class="container">
+    <h2>Hello @(((string)ViewData["customer"])): Please Writing Your Review:</h2>
+    <p>Here is your Order information, pleas select which food that you want to write a review for it. Thanks for your help.</p>
+    @foreach (var item in Model.OrderItems)
+    {
+        @if (item.MenuItem.Category != "Sides")
+                {
+            <div class="list-group">
+                <form class="list-group-item" asp-action="writeItem" method="get">
+                    <h4 id="title" class="list-group-item-heading">
+                        Food: @Html.DisplayFor(modelItem => item.MenuItem.Title)
+                    </h4>
+                    <p id ="category" class="list-group-item-text">
+                        Catrgory: @Html.DisplayFor(modelItem => item.MenuItem.Category)
+                        <input type="hidden" name="id" value="@item.MenuItemID" />
+                        <input type="hidden" name="name" value="@(((string)ViewData["customer"]))" />
+                        <input type="hidden" name="payment" value="@(((int)ViewData["pid"]))" />
+                    </p>
+                    <p class="list-group-item-text text-right">
+                        <input type="submit" value="Review" class="btn btn-success" />
+                    </p>
+                </form>
+            </div>
+        }
+    }
+</div>

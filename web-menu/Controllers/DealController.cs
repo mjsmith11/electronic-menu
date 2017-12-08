@@ -18,8 +18,9 @@ namespace web_menu.Controllers
         //GET: Deal
         public IActionResult Index()
         {
-            var deals = _context.MenuItems.Where(m => m.DiscountPrice != null).ToList();
+            var deals = _context.MenuItems.Where(m => m.DiscountPrice != null || m.Category.Equals("Combo")).ToList();
             return View(deals);
+            
         }
     }
 }

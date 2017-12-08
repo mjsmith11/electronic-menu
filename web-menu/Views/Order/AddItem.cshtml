@@ -5,11 +5,21 @@
 <h2>@Html.DisplayFor(m => Model.Title)</h2>
 @if (Model.DiscountPrice == null)
 {
-    <h3>@Html.DisplayFor(m => Model.Price)</h3>
+    <h3>@Html.DisplayFor(m => Model.Price)
+    <img src="@Model.Image" width="200" />
+    Allergy:
+    @Html.DisplayFor(m => Model.Alergy)
+    Calories:
+    @Html.DisplayFor(m => Model.Calories)</h3>
 }
 else
 {
-    <h3>@Html.DisplayFor(m => Model.DiscountPrice)</h3>
+    <h3>@Html.DisplayFor(m => Model.DiscountPrice)
+        <img src="@Model.Image" width="200" />
+        Allergy:
+        @Html.DisplayFor(m => Model.Alergy)
+        Calories:
+        @Html.DisplayFor(m => Model.Calories)</h3>
 }
 <hr />
 @if (ViewData["Added"] != null)

@@ -18,6 +18,8 @@ namespace web_menu.Controllers
         {
             _context = context;
         }
+
+        //get a detail of items ordered and cacluate total
         public async Task<IActionResult> Index()
         {
             int id;

@@ -19,6 +19,7 @@ namespace web_menu.Controllers
             _context = context;
         }
 
+        //Get a listing of tables sorted by availability and find open orders for tables
         // GET: Tables
         public async Task<IActionResult> Index()
         {
@@ -33,6 +34,7 @@ namespace web_menu.Controllers
             return View(model);
         }
 
+        //Marks a table as unavailabel
         // GET: Tables/Seat/5
         public async Task<IActionResult> Seat(int? id)
         {
@@ -54,6 +56,7 @@ namespace web_menu.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // Marks a table as available
         // GET: Tables/Available/5
         public async Task<IActionResult> Available(int? id)
         {
@@ -76,6 +79,7 @@ namespace web_menu.Controllers
 
         }
 
+        //Sets the identified order to paid status
         public async Task<IActionResult> Paid(int? id)
         {
             if (id == null)
@@ -96,6 +100,7 @@ namespace web_menu.Controllers
         }
 
 
+        //Responds to AJAX request for waiter requests
         [ResponseCache(NoStore = true, Location = ResponseCacheLocation.Client, Duration = 15)]
         public ActionResult Requests()
         {

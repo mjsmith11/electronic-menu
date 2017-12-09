@@ -27,6 +27,7 @@ namespace web_menu.Controllers
             return RedirectToAction("Index", "Menu");
         }
 
+        //Gather details on the item the user clicked and request details such as quantity an sides
         public async Task<IActionResult> AddItem(int? id)
         {
             if(id == null)
@@ -59,6 +60,7 @@ namespace web_menu.Controllers
             return View(item);
         }
 
+        //Insert the ordered itema nd any sides into the database
         [HttpPost]
         public async Task<IActionResult> AddItem(int? TableId, int Quantity, int? SideId1, int? SideId2, int ItemId, string Comment)
         {

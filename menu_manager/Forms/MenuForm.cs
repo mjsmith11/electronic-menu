@@ -144,6 +144,8 @@ namespace menu_manager.Forms
             cbxDiscount.Enabled = true;
         }
 
+        //Returns "" if all controls have valid values
+        //Returns an error message otherwise
         private string validateAllControls()
         {
             if (ddlCategory.Text == "")

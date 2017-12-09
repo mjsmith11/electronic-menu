@@ -18,6 +18,7 @@ namespace web_menu.Controllers
             _context = context;
         }
 
+        //Find all paid orders and calculate the overall total
         public IActionResult AllSales()
         {
             var paidOrders = _context.Orders

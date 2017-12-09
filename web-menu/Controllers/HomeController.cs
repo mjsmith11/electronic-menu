@@ -15,6 +15,7 @@ namespace web_menu.Controllers
             return View();
         }
 
+        //Links to this are currently disabled
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -22,6 +23,7 @@ namespace web_menu.Controllers
             return View();
         }
 
+        //links to this are currently disabled
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

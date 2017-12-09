@@ -19,6 +19,7 @@ namespace web_menu.Controllers
             _context = context;
         }
 
+        //Create a list of lists of menuitems where each sublist represents menuitems for a specific category and the main list is ordered in display order
         public async Task<IActionResult> Index()
         {
             var categories = await _context.MenuItems

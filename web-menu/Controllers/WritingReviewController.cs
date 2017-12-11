@@ -60,10 +60,29 @@ namespace web_menu.Views.WritingReview
             };
             _context.Reviews.Add(o);
             await _context.SaveChangesAsync();
+            //calculate the total score for this menu item and save it in menuitem 
+            var item = await _context.MenuItems
+               .AsNoTracking()
+               .Include(m => m.Reviews)
+               .SingleOrDefaultAsync(m => m.MenuItemID == itemid);
+            int scores = 0;
+            int no = 0;
+            foreach (var i in item.Reviews)
+            {
+                scores += i.Score;
+                no++;
+            }
+            double totalScore = ((double)scores / no);
+            
+            var scoreToUpdate = await _context.MenuItems.SingleOrDefaultAsync(t => t.MenuItemID == itemid);
+            scoreToUpdate.Score = (decimal)totalScore;
+            await _context.SaveChangesAsync();
+
             var menuItem = await _context.MenuItems.SingleAsync(m => m.MenuItemID == itemid);
             ViewData["Added"] = 1;
             ViewData["customer"] = name;
             ViewData["pid"] = payment;
+
             return View(menuItem);
         }
     }

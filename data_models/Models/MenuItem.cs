@@ -29,6 +29,8 @@ namespace data_models.Models
         public string Image { get; set; }
         public string Alergy { get; set; }
         public string Calories { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Score { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; }
 

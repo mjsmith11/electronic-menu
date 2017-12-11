@@ -20,7 +20,7 @@ namespace web_menu.Controllers
         }
 
         //Create a list of lists of menuitems where each sublist represents menuitems for a specific category and the main list is ordered in display order
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
             var categories = await _context.MenuItems
                 .AsNoTracking()
@@ -29,16 +29,37 @@ namespace web_menu.Controllers
                 .OrderBy(m => GetCategorySortIndex(m))
                 .ToListAsync();
 
+            ViewData["reviewSort"] = sortOrder == "review" ? "review" : "review_desc";
+            ViewData["decreaseSort"] = String.IsNullOrEmpty(sortOrder) ? "price_desc": "price_desc";
+            ViewData["IncreaseSort"] = String.IsNullOrEmpty(sortOrder) ? "price_asc": "price_asc";
+
             List<List<MenuItem>> menu = new List<List<MenuItem>>();
             foreach(string category in categories)
             {
-                var categoryItems = await _context.MenuItems
-                    .AsNoTracking()
-                    .Where(m => (m.Category.Equals(category)))
-                    .ToListAsync();
-
-                menu.Add(categoryItems);
+                var categoryItems = from s in _context.MenuItems
+                                    .Where(m => (m.Category.Equals(category)))
+                                    select s;
+                switch (sortOrder)
+                {
+                    case "review_desc":
+                        categoryItems = categoryItems.OrderByDescending(s => s.Score);
+                        break;
+                    case "review":
+                        categoryItems = categoryItems.OrderBy(s => s.Score);
+                        break;
+                    case "price_desc":
+                        categoryItems = categoryItems.OrderByDescending(s => s.Price);
+                        break;
+                    case "price_asc":
+                        categoryItems = categoryItems.OrderBy(s => s.Price);
+                        break;
+                    default:
+                        break;
+                }
+                await categoryItems.AsNoTracking().ToListAsync();
+                menu.Add(categoryItems.ToList());
             }
+   
             return View(menu);
         }
 

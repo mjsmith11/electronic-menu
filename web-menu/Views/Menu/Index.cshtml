@@ -15,6 +15,19 @@
 <p>
     <a asp-action="CallWaiter">Call Waiter</a>
 </p>
+<p class="text-right">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown">
+            Sort By:<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu col-sm-6" role="menu">
+            <li><a asp-action="Index" asp-route-sortOrder="@ViewData["reviewSort"]">Customer Review</a></li>
+            <li><a asp-action="Index" asp-route-sortOrder="@ViewData["decreaseSort"]">Price Higher to Lower</a></li>
+            <li><a asp-action="Index" asp-route-sortOrder="@ViewData["IncreaseSort"]">Price Lower to Higher</a></li>
+        </ul>
+    </div>
+</p>
 <p>All entrées are served with your choice of two side dishes</p>
 @{
     @foreach (var CategoryList in Model)

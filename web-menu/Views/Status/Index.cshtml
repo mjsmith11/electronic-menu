@@ -1,0 +1,50 @@
+﻿@model IEnumerable<data_models.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Order Status</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Order Number
+                
+            </th>
+                <th>
+                    Finished
+                    
+                </th>
+            <th>
+                Table Number
+                
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.IsPrepared)
+            </td>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.TableID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OrderID">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

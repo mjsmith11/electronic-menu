@@ -18,7 +18,8 @@ namespace web_menu.Controllers
         {
             _context = context;
         }
-
+        //The index is shown to find orders that have not yet been paid. It will show when orders are finished however
+        //In order to change a order to finished click the edit link on the side and change the order to IsPrepared
         // GET: Status
         public async Task<IActionResult> Index()
         {

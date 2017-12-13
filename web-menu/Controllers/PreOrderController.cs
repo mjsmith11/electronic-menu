@@ -18,7 +18,8 @@ namespace web_menu.Controllers
         {
             _context = context;
         }
-
+        //The preorder tab will find all tables that are equal to -1 and have not yet been paid for, this will show current preorders
+        //To seat the preorder customer at a table, click the edit link and select a new table. Then go to the table map and mark it as not available
         // GET: PreOrder
         public async Task<IActionResult> Index()
         {

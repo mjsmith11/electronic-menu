@@ -15,6 +15,7 @@ namespace web_menu.Controllers
         {
             _context = context;
         }
+        //Shows deals by finding any item where the price has been discounted or it's part of the package deal (combo)
         //GET: Deal
         public IActionResult Index()
         {

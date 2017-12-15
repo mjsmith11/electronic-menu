@@ -1,7 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@section headscripts{
 
+    <script type="text/javascript">
+        function playGame() {
+            window.location.href = "http://www.pogo.com/"
+
+        }
+        function FindNews() {
+            window.location.href = "https://news.google.com/news"
+
+        }
+
+    </script>
+}
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <div class="carousel-inner" role="listbox">
         <div class="item active">
@@ -31,3 +44,8 @@
         <img src="~/images//ribeye.jpg" alt="Bone-In (Cowboy) Ribeye" class="img-responsive" />
     </div>
 </div>
+<br />
+<p class="text-right">
+    <button type="button" class="btn btn-lg btn-success" onclick="playGame()">Playing a Game</button>
+    <button type="button" class="btn btn-lg btn-info" onclick="FindNews()">Find some news</button>
+</p>
